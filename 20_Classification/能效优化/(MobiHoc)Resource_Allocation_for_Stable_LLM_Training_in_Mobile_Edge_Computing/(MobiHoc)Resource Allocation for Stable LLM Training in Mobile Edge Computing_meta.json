@@ -1,0 +1,1008 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Resource Allocation for Stable LLM Training in Mobile Edge\nComputing",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          70.20899963378906,
+          82.37109375
+        ],
+        [
+          541.7796020507812,
+          82.37109375
+        ],
+        [
+          541.7796020507812,
+          119.90936279296875
+        ],
+        [
+          70.20899963378906,
+          119.90936279296875
+        ]
+      ]
+    },
+    {
+      "title": "ABSTRACT",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.79800033569336,
+          198.7734375
+        ],
+        [
+          111.94296264648438,
+          198.7734375
+        ],
+        [
+          111.94296264648438,
+          209.839599609375
+        ],
+        [
+          53.79800033569336,
+          209.839599609375
+        ]
+      ]
+    },
+    {
+      "title": "CCS CONCEPTS",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.79800033569336,
+          453.62109375
+        ],
+        [
+          135.369140625,
+          453.62109375
+        ],
+        [
+          135.369140625,
+          465.9226379394531
+        ],
+        [
+          53.79800033569336,
+          465.9226379394531
+        ]
+      ]
+    },
+    {
+      "title": "KEYWORDS",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          52.892578125,
+          490.74609375
+        ],
+        [
+          115.66293334960938,
+          490.74609375
+        ],
+        [
+          115.66293334960938,
+          502.8276672363281
+        ],
+        [
+          52.892578125,
+          502.8276672363281
+        ]
+      ]
+    },
+    {
+      "title": "ACM Reference Format:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          52.892578125,
+          524.77734375
+        ],
+        [
+          140.748046875,
+          524.77734375
+        ],
+        [
+          140.748046875,
+          533.5232238769531
+        ],
+        [
+          52.892578125,
+          533.5232238769531
+        ]
+      ]
+    },
+    {
+      "title": "1 INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          317.056640625,
+          198.38671875
+        ],
+        [
+          420.6850280761719,
+          198.38671875
+        ],
+        [
+          420.6850280761719,
+          209.839599609375
+        ],
+        [
+          317.056640625,
+          209.839599609375
+        ]
+      ]
+    },
+    {
+      "title": "2 RELATED WORK",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          316.16015625,
+          85.078125
+        ],
+        [
+          421.7431945800781,
+          85.078125
+        ],
+        [
+          421.7431945800781,
+          96.31561279296875
+        ],
+        [
+          316.16015625,
+          96.31561279296875
+        ]
+      ]
+    },
+    {
+      "title": "SYSTEM MODEL",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          53.7890625,
+          642.33984375
+        ],
+        [
+          153.75,
+          642.33984375
+        ],
+        [
+          153.75,
+          652.5
+        ],
+        [
+          53.7890625,
+          652.5
+        ]
+      ]
+    },
+    {
+      "title": "Local Computation Model",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          317.953125,
+          310.1484375
+        ],
+        [
+          471.75,
+          310.1484375
+        ],
+        [
+          471.75,
+          320.9765625
+        ],
+        [
+          317.953125,
+          320.9765625
+        ]
+      ]
+    },
+    {
+      "title": "Edge Computation Model",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          51.99609375,
+          110.98828125
+        ],
+        [
+          204.75,
+          110.98828125
+        ],
+        [
+          204.75,
+          121.04296875
+        ],
+        [
+          51.99609375,
+          121.04296875
+        ]
+      ]
+    },
+    {
+      "title": "3.3 LLM Stability",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          52.5,
+          400.5
+        ],
+        [
+          144.75,
+          400.5
+        ],
+        [
+          144.75,
+          409.53515625
+        ],
+        [
+          52.5,
+          409.53515625
+        ]
+      ]
+    },
+    {
+      "title": "Problem Formulation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          53.7890625,
+          648.52734375
+        ],
+        [
+          186.0,
+          648.52734375
+        ],
+        [
+          186.0,
+          658.5
+        ],
+        [
+          53.7890625,
+          658.5
+        ]
+      ]
+    },
+    {
+      "title": "PROPOSED ALGORITHM",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          52.59375,
+          84.69140625
+        ],
+        [
+          198.75,
+          84.69140625
+        ],
+        [
+          198.75,
+          93.75
+        ],
+        [
+          52.59375,
+          93.75
+        ]
+      ]
+    },
+    {
+      "title": "Optimizing \\alpha, p, b, f^U, f^E given \\chi",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          53.19140625,
+          126.0
+        ],
+        [
+          242.05078125,
+          126.0
+        ],
+        [
+          242.05078125,
+          138.05859375
+        ],
+        [
+          53.19140625,
+          138.05859375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Optimizing \\chi given \\alpha, p, b, f^U, f^E",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          52.5,
+          157.78125
+        ],
+        [
+          242.6484375,
+          157.78125
+        ],
+        [
+          242.6484375,
+          170.25
+        ],
+        [
+          52.5,
+          170.25
+        ]
+      ]
+    },
+    {
+      "title": "5 SIMULATIONS",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          317.953125,
+          306.66796875
+        ],
+        [
+          408.796875,
+          306.66796875
+        ],
+        [
+          408.796875,
+          315.75
+        ],
+        [
+          317.953125,
+          315.75
+        ]
+      ]
+    },
+    {
+      "title": "5.1 The performance of the proposed collaborative training method",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          316.7578125,
+          585.0
+        ],
+        [
+          510.3984375,
+          585.0
+        ],
+        [
+          510.3984375,
+          608.6953125
+        ],
+        [
+          316.7578125,
+          608.6953125
+        ]
+      ]
+    },
+    {
+      "title": "5.2 The performance of proposed algorithms under weighting factors",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          53.7890625,
+          292.5
+        ],
+        [
+          283.5,
+          292.5
+        ],
+        [
+          283.5,
+          316.3359375
+        ],
+        [
+          53.7890625,
+          316.3359375
+        ]
+      ]
+    },
+    {
+      "title": "5.3 The impact of the number of users and the number of edge servers",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          316.7578125,
+          260.6484375
+        ],
+        [
+          554.25,
+          260.6484375
+        ],
+        [
+          554.25,
+          283.8515625
+        ],
+        [
+          316.7578125,
+          283.8515625
+        ]
+      ]
+    },
+    {
+      "title": "CONCLUSION",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          52.59375,
+          453.62109375
+        ],
+        [
+          141.046875,
+          453.62109375
+        ],
+        [
+          141.046875,
+          462.75
+        ],
+        [
+          52.59375,
+          462.75
+        ]
+      ]
+    },
+    {
+      "title": "ACKNOWLEDGEMENT",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          52.5,
+          611.40234375
+        ],
+        [
+          172.5,
+          611.40234375
+        ],
+        [
+          172.5,
+          621.0
+        ],
+        [
+          52.5,
+          621.0
+        ]
+      ]
+    },
+    {
+      "title": "A PROOF OF THEOREM 1",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          316.5,
+          221.9765625
+        ],
+        [
+          456.75,
+          221.9765625
+        ],
+        [
+          456.75,
+          231.0
+        ],
+        [
+          316.5,
+          231.0
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          52.5,
+          462.90234375
+        ],
+        [
+          123.0,
+          462.90234375
+        ],
+        [
+          123.0,
+          473.25
+        ],
+        [
+          52.5,
+          473.25
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          208
+        ],
+        [
+          "Line",
+          98
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          272
+        ],
+        [
+          "Line",
+          114
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          150
+        ],
+        [
+          "Line",
+          85
+        ],
+        [
+          "TableCell",
+          34
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Equation",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          195
+        ],
+        [
+          "Line",
+          107
+        ],
+        [
+          "Text",
+          15
+        ],
+        [
+          "Equation",
+          13
+        ],
+        [
+          "Reference",
+          9
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          242
+        ],
+        [
+          "Line",
+          72
+        ],
+        [
+          "Text",
+          14
+        ],
+        [
+          "Equation",
+          12
+        ],
+        [
+          "Reference",
+          8
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          93
+        ],
+        [
+          "Span",
+          79
+        ],
+        [
+          "Equation",
+          36
+        ],
+        [
+          "Text",
+          19
+        ],
+        [
+          "Reference",
+          11
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          118
+        ],
+        [
+          "Span",
+          116
+        ],
+        [
+          "Text",
+          16
+        ],
+        [
+          "Equation",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          144
+        ],
+        [
+          "Span",
+          83
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          127
+        ],
+        [
+          "Span",
+          88
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "Equation",
+          8
+        ],
+        [
+          "Caption",
+          7
+        ],
+        [
+          "Figure",
+          6
+        ],
+        [
+          "Reference",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          135
+        ],
+        [
+          "Span",
+          126
+        ],
+        [
+          "Reference",
+          42
+        ],
+        [
+          "ListItem",
+          34
+        ],
+        [
+          "Equation",
+          13
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/(MobiHoc)Resource Allocation for Stable LLM Training in Mobile Edge Computing"
+}

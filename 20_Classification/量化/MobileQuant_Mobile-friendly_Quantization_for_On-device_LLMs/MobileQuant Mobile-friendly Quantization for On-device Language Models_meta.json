@@ -1,0 +1,1083 @@
+{
+  "table_of_contents": [
+    {
+      "title": "MobileQuant: Mobile-friendly Quantization for On-device Language\nModels",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          83.8125,
+          74.826171875
+        ],
+        [
+          509.859375,
+          74.826171875
+        ],
+        [
+          509.859375,
+          105.57623291015625
+        ],
+        [
+          83.8125,
+          105.57623291015625
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          156.857421875,
+          221.189453125
+        ],
+        [
+          202.24325561523438,
+          221.189453125
+        ],
+        [
+          202.24325561523438,
+          233.75543212890625
+        ],
+        [
+          156.857421875,
+          233.75543212890625
+        ]
+      ]
+    },
+    {
+      "title": "1 Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          70.716796875,
+          727.7131652832031
+        ],
+        [
+          153.6796875,
+          727.7131652832031
+        ],
+        [
+          153.6796875,
+          739.6683654785156
+        ],
+        [
+          70.716796875,
+          739.6683654785156
+        ]
+      ]
+    },
+    {
+      "title": "2 Related Work",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          304.984375,
+          439.5009765625
+        ],
+        [
+          395.2321472167969,
+          439.5009765625
+        ],
+        [
+          395.2321472167969,
+          451.5203552246094
+        ],
+        [
+          304.984375,
+          451.5203552246094
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Post-training Quantization (PTQ)",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          304.40234375,
+          461.77203369140625
+        ],
+        [
+          488.0512390136719,
+          461.77203369140625
+        ],
+        [
+          488.0512390136719,
+          472.68115234375
+        ],
+        [
+          304.40234375,
+          472.68115234375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Quantization Aware Training (QAT)",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          69.05793450881612,
+          327.6527159394479
+        ],
+        [
+          265.7229219143577,
+          327.6527159394479
+        ],
+        [
+          265.7229219143577,
+          339.1845703125
+        ],
+        [
+          69.05793450881612,
+          339.1845703125
+        ]
+      ]
+    },
+    {
+      "title": "3 Preliminaries",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          68.3073047858942,
+          557.9072265625
+        ],
+        [
+          158.3828715365239,
+          557.9072265625
+        ],
+        [
+          158.3828715365239,
+          569.0810329474622
+        ],
+        [
+          68.3073047858942,
+          569.0810329474622
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Mobile-friendly Design Choices",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          70.42578125,
+          583.326803205699
+        ],
+        [
+          243.87109375,
+          583.326803205699
+        ],
+        [
+          243.87109375,
+          593.2646484375
+        ],
+        [
+          70.42578125,
+          593.2646484375
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Weight Equivalent Transformation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          304.40234375,
+          432.9228515625
+        ],
+        [
+          494.6649874055415,
+          432.9228515625
+        ],
+        [
+          494.6649874055415,
+          443.8682101513802
+        ],
+        [
+          304.40234375,
+          443.8682101513802
+        ]
+      ]
+    },
+    {
+      "title": "4 MobileQuant: Towards Mobile-friendly \nQuantization",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          69.84375,
+          437.8564453125
+        ],
+        [
+          290.4937027707808,
+          437.8564453125
+        ],
+        [
+          290.4937027707808,
+          463.3466796875
+        ],
+        [
+          69.84375,
+          463.3466796875
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Challenges for Mobile-friendly Quantization",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          69.05793450881612,
+          474.60908281389135
+        ],
+        [
+          239.45088161209065,
+          474.60908281389135
+        ],
+        [
+          239.45088161209065,
+          498.29296875
+        ],
+        [
+          69.05793450881612,
+          498.29296875
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Learning the Per-tensor Range of the Activations",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          306.1484375,
+          385.3855743544078
+        ],
+        [
+          504.4231738035264,
+          385.3855743544078
+        ],
+        [
+          504.4231738035264,
+          407.8788958147818
+        ],
+        [
+          306.1484375,
+          407.8788958147818
+        ]
+      ]
+    },
+    {
+      "title": "4.3 End-to-end Optimization vs Layer-wise\nOptimization",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          69.26171875,
+          315.3388671875
+        ],
+        [
+          278.8370666503906,
+          315.3388671875
+        ],
+        [
+          278.8370666503906,
+          340.4441833496094
+        ],
+        [
+          69.26171875,
+          340.4441833496094
+        ]
+      ]
+    },
+    {
+      "title": "5 Experiments",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          69.552734375,
+          683.3241577148438
+        ],
+        [
+          153.947265625,
+          683.3241577148438
+        ],
+        [
+          153.947265625,
+          695.2793579101562
+        ],
+        [
+          69.552734375,
+          695.2793579101562
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Setup",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          70.716796875,
+          705.8210601806641
+        ],
+        [
+          122.08422088623047,
+          705.8210601806641
+        ],
+        [
+          122.08422088623047,
+          716.7301559448242
+        ],
+        [
+          70.716796875,
+          716.7301559448242
+        ]
+      ]
+    },
+    {
+      "title": "5.2 On-device Baselines",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          306.14202880859375,
+          570.7710571289062
+        ],
+        [
+          423.71875,
+          570.7710571289062
+        ],
+        [
+          423.71875,
+          581.68017578125
+        ],
+        [
+          306.14202880859375,
+          581.68017578125
+        ]
+      ]
+    },
+    {
+      "title": "5.3 Impact of Activation Range Learning",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          69.26171875,
+          691.2590484619141
+        ],
+        [
+          270.64453125,
+          691.2590484619141
+        ],
+        [
+          270.64453125,
+          702.1681365966797
+        ],
+        [
+          69.26171875,
+          702.1681365966797
+        ]
+      ]
+    },
+    {
+      "title": "5.4 Impact of End-to-End Optimization",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          306.14202880859375,
+          485.5478515625
+        ],
+        [
+          498.80078125,
+          485.5478515625
+        ],
+        [
+          498.80078125,
+          497.2771911621094
+        ],
+        [
+          306.14202880859375,
+          497.2771911621094
+        ]
+      ]
+    },
+    {
+      "title": "5.5 Harness Benchmark Results",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          69.84375,
+          649.4720611572266
+        ],
+        [
+          227.36795043945312,
+          649.4720611572266
+        ],
+        [
+          227.36795043945312,
+          660.3811492919922
+        ],
+        [
+          69.84375,
+          660.3811492919922
+        ]
+      ]
+    },
+    {
+      "title": "5.6 On-device Evaluation",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          70.42578125,
+          324.794921875
+        ],
+        [
+          196.058837890625,
+          324.794921875
+        ],
+        [
+          196.058837890625,
+          336.2591552734375
+        ],
+        [
+          70.42578125,
+          336.2591552734375
+        ]
+      ]
+    },
+    {
+      "title": "6 Conclusion",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          70.86599731445312,
+          409.75616455078125
+        ],
+        [
+          145.93270874023438,
+          409.75616455078125
+        ],
+        [
+          145.93270874023438,
+          421.71136474609375
+        ],
+        [
+          70.86599731445312,
+          421.71136474609375
+        ]
+      ]
+    },
+    {
+      "title": "Limitations",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          68.970703125,
+          564.4853515625
+        ],
+        [
+          129.98446655273438,
+          564.4853515625
+        ],
+        [
+          129.98446655273438,
+          577.52734375
+        ],
+        [
+          68.970703125,
+          577.52734375
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          304.693359375,
+          71.9482421875
+        ],
+        [
+          361.68585205078125,
+          71.9482421875
+        ],
+        [
+          361.68585205078125,
+          84.71441650390625
+        ],
+        [
+          304.693359375,
+          84.71441650390625
+        ]
+      ]
+    },
+    {
+      "title": "A Appendix: On-device Experiments for\nW4A8",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          68.6796875,
+          72.359375
+        ],
+        [
+          286.3226318359375,
+          72.359375
+        ],
+        [
+          286.3226318359375,
+          98.662353515625
+        ],
+        [
+          68.6796875,
+          98.662353515625
+        ]
+      ]
+    },
+    {
+      "title": "A.1 Symmetric vs Asymmetric W4A8\nQuantization",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          69.26171875,
+          269.703125
+        ],
+        [
+          253.2443389892578,
+          269.703125
+        ],
+        [
+          253.2443389892578,
+          294.859130859375
+        ],
+        [
+          69.26171875,
+          294.859130859375
+        ]
+      ]
+    },
+    {
+      "title": "A.2 On-device Latency for Symmetric W4A8\nmodels",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          306.1419982910156,
+          73.181640625
+        ],
+        [
+          522.9385375976562,
+          73.181640625
+        ],
+        [
+          522.9385375976562,
+          98.02008056640625
+        ],
+        [
+          306.1419982910156,
+          98.02008056640625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          253
+        ],
+        [
+          "Line",
+          100
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          254
+        ],
+        [
+          "Line",
+          100
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          119
+        ],
+        [
+          "Span",
+          56
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          82
+        ],
+        [
+          "Span",
+          78
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Equation",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          317
+        ],
+        [
+          "Line",
+          100
+        ],
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          333
+        ],
+        [
+          "Line",
+          85
+        ],
+        [
+          "TableCell",
+          78
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          442
+        ],
+        [
+          "TableCell",
+          158
+        ],
+        [
+          "Line",
+          67
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          266
+        ],
+        [
+          "Line",
+          83
+        ],
+        [
+          "TableCell",
+          54
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          238
+        ],
+        [
+          "Line",
+          102
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Reference",
+          11
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          273
+        ],
+        [
+          "Line",
+          106
+        ],
+        [
+          "ListItem",
+          21
+        ],
+        [
+          "Reference",
+          21
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          231
+        ],
+        [
+          "Line",
+          63
+        ],
+        [
+          "TableCell",
+          63
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/MobileQuant Mobile-friendly Quantization for On-device Language Models"
+}

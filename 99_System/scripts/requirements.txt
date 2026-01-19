@@ -1,0 +1,13 @@
+# PDF Converter 依赖
+# 安装命令: pip install -r requirements.txt
+
+# 核心依赖
+paramiko>=3.0.0       # SSH/SFTP 连接
+watchdog>=3.0.0       # 文件系统监控
+
+# 可选依赖 (如果在本地也运行 marker)
+# marker-pdf>=1.0.0   # PDF 转换工具 (需要 GPU)
+
+# Librarian Agent 依赖
+google-generativeai>=0.5.0  # Gemini API
+python-frontmatter>=1.1.0   # YAML Frontmatter 处理

@@ -1,0 +1,805 @@
+{
+  "table_of_contents": [
+    {
+      "title": "MagicVL-2B: Empowering Vision-Language Models on Mobile Devices with\nLightweight Visual Encoders via Curriculum Learning",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          71.71875,
+          97.873046875
+        ],
+        [
+          540.0753784179688,
+          97.873046875
+        ],
+        [
+          540.0753784179688,
+          128.16021728515625
+        ],
+        [
+          71.71875,
+          128.16021728515625
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          154.494140625,
+          254.05743408203125
+        ],
+        [
+          191.7858428955078,
+          254.05743408203125
+        ],
+        [
+          191.7858428955078,
+          264.02001953125
+        ],
+        [
+          154.494140625,
+          264.02001953125
+        ]
+      ]
+    },
+    {
+      "title": "Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          140.150390625,
+          521.68359375
+        ],
+        [
+          205.69088745117188,
+          521.68359375
+        ],
+        [
+          205.69088745117188,
+          533.7043762207031
+        ],
+        [
+          140.150390625,
+          533.7043762207031
+        ]
+      ]
+    },
+    {
+      "title": "Our main contributions are summarized as follows:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          62.75390625,
+          401.02734375
+        ],
+        [
+          282.9608459472656,
+          401.02734375
+        ],
+        [
+          282.9608459472656,
+          412.0541076660156
+        ],
+        [
+          62.75390625,
+          412.0541076660156
+        ]
+      ]
+    },
+    {
+      "title": "Related Works",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          400.84600830078125,
+          338.7341613769531
+        ],
+        [
+          476.6539306640625,
+          338.7341613769531
+        ],
+        [
+          476.6539306640625,
+          350.6893615722656
+        ],
+        [
+          400.84600830078125,
+          350.6893615722656
+        ]
+      ]
+    },
+    {
+      "title": "Efficient Image Encoding",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          318.849609375,
+          355.39453125
+        ],
+        [
+          437.689208984375,
+          355.39453125
+        ],
+        [
+          437.689208984375,
+          366.712158203125
+        ],
+        [
+          318.849609375,
+          366.712158203125
+        ]
+      ]
+    },
+    {
+      "title": "Vision Language Models",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.953125,
+          568.76806640625
+        ],
+        [
+          434.2637634277344,
+          568.76806640625
+        ],
+        [
+          434.2637634277344,
+          579.69140625
+        ],
+        [
+          317.953125,
+          579.69140625
+        ]
+      ]
+    },
+    {
+      "title": "On-Mobile-Device Large Language Models",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          52.5,
+          142.5
+        ],
+        [
+          255.75,
+          142.5
+        ],
+        [
+          255.75,
+          153.52734375
+        ],
+        [
+          52.5,
+          153.52734375
+        ]
+      ]
+    },
+    {
+      "title": "MagicVL-2B",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          138.0,
+          389.0390625
+        ],
+        [
+          207.0,
+          389.0390625
+        ],
+        [
+          207.0,
+          399.8671875
+        ],
+        [
+          138.0,
+          399.8671875
+        ]
+      ]
+    },
+    {
+      "title": "Model Architecture",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          52.5,
+          471.0
+        ],
+        [
+          146.25,
+          471.0
+        ],
+        [
+          146.25,
+          480.69140625
+        ],
+        [
+          52.5,
+          480.69140625
+        ]
+      ]
+    },
+    {
+      "title": "Training Data Collection",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          53.19140625,
+          438.15234375
+        ],
+        [
+          169.5601043701172,
+          438.15234375
+        ],
+        [
+          169.5601043701172,
+          449.5581359863281
+        ],
+        [
+          53.19140625,
+          449.5581359863281
+        ]
+      ]
+    },
+    {
+      "title": "Curriculum Learning Training",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          319.1484375,
+          575.6360626220703
+        ],
+        [
+          464.9765625,
+          575.6360626220703
+        ],
+        [
+          464.9765625,
+          586.5451507568359
+        ],
+        [
+          319.1484375,
+          586.5451507568359
+        ]
+      ]
+    },
+    {
+      "title": "Experiments",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          406.2080078125,
+          540.0801391601562
+        ],
+        [
+          471.849609375,
+          540.0801391601562
+        ],
+        [
+          471.849609375,
+          552.0353393554688
+        ],
+        [
+          406.2080078125,
+          552.0353393554688
+        ]
+      ]
+    },
+    {
+      "title": "Training Setting",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          318.55078125,
+          634.1260681152344
+        ],
+        [
+          395.372802734375,
+          634.1260681152344
+        ],
+        [
+          395.372802734375,
+          645.03515625
+        ],
+        [
+          318.55078125,
+          645.03515625
+        ]
+      ]
+    },
+    {
+      "title": "Comparison with State-of-the-art",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          52.5,
+          399.75
+        ],
+        [
+          211.5,
+          399.75
+        ],
+        [
+          211.5,
+          409.53515625
+        ],
+        [
+          52.5,
+          409.53515625
+        ]
+      ]
+    },
+    {
+      "title": "Ablation Study",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          52.5,
+          623.77734375
+        ],
+        [
+          126.0,
+          623.77734375
+        ],
+        [
+          126.0,
+          633.0
+        ],
+        [
+          52.5,
+          633.0
+        ]
+      ]
+    },
+    {
+      "title": "Conclusion",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          143.4375,
+          110.15216064453125
+        ],
+        [
+          201.81692504882812,
+          110.15216064453125
+        ],
+        [
+          201.81692504882812,
+          122.10736083984375
+        ],
+        [
+          143.4375,
+          122.10736083984375
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          143.736328125,
+          277.27734375
+        ],
+        [
+          201.0218505859375,
+          277.27734375
+        ],
+        [
+          201.0218505859375,
+          289.578369140625
+        ],
+        [
+          143.736328125,
+          289.578369140625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          182
+        ],
+        [
+          "Line",
+          92
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          130
+        ],
+        [
+          "Line",
+          64
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          116
+        ],
+        [
+          "Span",
+          101
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Equation",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          301
+        ],
+        [
+          "Line",
+          104
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          111
+        ],
+        [
+          "Span",
+          96
+        ],
+        [
+          "Text",
+          21
+        ],
+        [
+          "Equation",
+          11
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          282
+        ],
+        [
+          "TableCell",
+          244
+        ],
+        [
+          "Line",
+          77
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          91
+        ],
+        [
+          "Span",
+          72
+        ],
+        [
+          "TableCell",
+          51
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "TableGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          269
+        ],
+        [
+          "Line",
+          111
+        ],
+        [
+          "ListItem",
+          23
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          285
+        ],
+        [
+          "Line",
+          111
+        ],
+        [
+          "ListItem",
+          31
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          178
+        ],
+        [
+          "Line",
+          72
+        ],
+        [
+          "ListItem",
+          15
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/MagicVL-2B Empowering Vision-Language Models on Mobile Devices with Lightweight Visual Encoders via Curriculum Learning"
+}

@@ -1,0 +1,1139 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Enabling MoE on the Edge via Importance-Driven Expert Scheduling",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          55.5,
+          54.140625
+        ],
+        [
+          555.75,
+          54.0
+        ],
+        [
+          555.75,
+          103.640625
+        ],
+        [
+          55.5,
+          103.640625
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          132.380859375,
+          394.83984375
+        ],
+        [
+          214.5,
+          394.83984375
+        ],
+        [
+          214.5,
+          404.25
+        ],
+        [
+          132.380859375,
+          404.25
+        ]
+      ]
+    },
+    {
+      "title": "Contributions. Our contributions are as follows.",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          47.21484375,
+          149.70953369140625
+        ],
+        [
+          248.94326782226562,
+          149.70953369140625
+        ],
+        [
+          248.94326782226562,
+          159.7630615234375
+        ],
+        [
+          47.21484375,
+          159.7630615234375
+        ]
+      ]
+    },
+    {
+      "title": "II. BACKGROUND",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          135.966796875,
+          289.74554443359375
+        ],
+        [
+          213.064453125,
+          289.74554443359375
+        ],
+        [
+          213.064453125,
+          299.7081604003906
+        ],
+        [
+          135.966796875,
+          299.7081604003906
+        ]
+      ]
+    },
+    {
+      "title": "A. LLM with Fine-grained Expert MoE",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          47.8125,
+          621.9488677978516
+        ],
+        [
+          210.916015625,
+          621.9488677978516
+        ],
+        [
+          210.916015625,
+          632.28515625
+        ],
+        [
+          47.8125,
+          632.28515625
+        ]
+      ]
+    },
+    {
+      "title": "B. Expert Offloading in MoE LLMs",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          311.080078125,
+          370.90203857421875
+        ],
+        [
+          458.8565979003906,
+          370.90203857421875
+        ],
+        [
+          458.8565979003906,
+          380.8646240234375
+        ],
+        [
+          311.080078125,
+          380.8646240234375
+        ]
+      ]
+    },
+    {
+      "title": "III. MOTIVATION",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          135.369140625,
+          251.25
+        ],
+        [
+          211.5,
+          251.25
+        ],
+        [
+          211.5,
+          259.5
+        ],
+        [
+          135.369140625,
+          259.5
+        ]
+      ]
+    },
+    {
+      "title": "IV. EXPERT SCHEDULER WITH SUBSTITUTION",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.51171875,
+          177.890625
+        ],
+        [
+          273.6727600097656,
+          177.890625
+        ],
+        [
+          273.6727600097656,
+          189.196044921875
+        ],
+        [
+          73.51171875,
+          189.196044921875
+        ]
+      ]
+    },
+    {
+      "title": "A. Design Analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          48.111328125,
+          331.864013671875
+        ],
+        [
+          127.99730682373047,
+          331.864013671875
+        ],
+        [
+          127.99730682373047,
+          341.82659912109375
+        ],
+        [
+          48.111328125,
+          341.82659912109375
+        ]
+      ]
+    },
+    {
+      "title": "B. Low-score Expert Substitution",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          309.287109375,
+          561.6318054199219
+        ],
+        [
+          448.3757629394531,
+          561.6318054199219
+        ],
+        [
+          448.3757629394531,
+          571.5944061279297
+        ],
+        [
+          309.287109375,
+          571.5944061279297
+        ]
+      ]
+    },
+    {
+      "title": "Algorithm 1 Expert-Cache Router",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          47.513671875,
+          47.953125
+        ],
+        [
+          191.25,
+          47.953125
+        ],
+        [
+          191.25,
+          57.75
+        ],
+        [
+          47.513671875,
+          57.75
+        ]
+      ]
+    },
+    {
+      "title": "C. Loading Top-score Expert Online",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          311.25,
+          381.0
+        ],
+        [
+          463.5,
+          382.46484375
+        ],
+        [
+          463.5,
+          392.25
+        ],
+        [
+          311.25,
+          390.97265625
+        ]
+      ]
+    },
+    {
+      "title": "V. SYSTEM IMPLEMENTATION",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          108.474609375,
+          211.5
+        ],
+        [
+          239.25,
+          211.5
+        ],
+        [
+          239.25,
+          220.04296875
+        ],
+        [
+          108.474609375,
+          220.04296875
+        ]
+      ]
+    },
+    {
+      "title": "A. CPU-assisted Computing Loading Scheduling",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          47.25,
+          388.5
+        ],
+        [
+          249.75,
+          388.5
+        ],
+        [
+          249.75,
+          398.25
+        ],
+        [
+          47.25,
+          398.25
+        ]
+      ]
+    },
+    {
+      "title": "Algorithm 2 CPU-assisted Computing Loading Scheduling",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          309.5859375,
+          192.75
+        ],
+        [
+          557.25,
+          192.75
+        ],
+        [
+          557.25,
+          202.5
+        ],
+        [
+          309.5859375,
+          202.5
+        ]
+      ]
+    },
+    {
+      "title": "B. Pipeline Example between Layers",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          47.8125,
+          51.046875
+        ],
+        [
+          200.8125,
+          51.046875
+        ],
+        [
+          200.8125,
+          61.14056396484375
+        ],
+        [
+          47.8125,
+          61.14056396484375
+        ]
+      ]
+    },
+    {
+      "title": "C. Selecting value for hyperparameter \u03b1",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          47.8125,
+          549.1249542236328
+        ],
+        [
+          217.16258239746094,
+          549.1249542236328
+        ],
+        [
+          217.16258239746094,
+          559.1416473388672
+        ],
+        [
+          47.8125,
+          559.1416473388672
+        ]
+      ]
+    },
+    {
+      "title": "VI. EVALUATION",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          400.1919860839844,
+          391.74609375
+        ],
+        [
+          474.8279113769531,
+          391.74609375
+        ],
+        [
+          474.8279113769531,
+          403.654052734375
+        ],
+        [
+          400.1919860839844,
+          403.654052734375
+        ]
+      ]
+    },
+    {
+      "title": "A. Setup",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          310.78125,
+          523.6388854980469
+        ],
+        [
+          349.03125,
+          523.6388854980469
+        ],
+        [
+          349.03125,
+          533.6014709472656
+        ],
+        [
+          310.78125,
+          533.6014709472656
+        ]
+      ]
+    },
+    {
+      "title": "B. Overall Performance",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          310.5,
+          645.43359375
+        ],
+        [
+          411.75,
+          645.43359375
+        ],
+        [
+          411.75,
+          654.75
+        ],
+        [
+          310.5,
+          654.75
+        ]
+      ]
+    },
+    {
+      "title": "C. Ablation Studies",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          48.0,
+          261.75
+        ],
+        [
+          130.5,
+          261.75
+        ],
+        [
+          130.5,
+          270.75
+        ],
+        [
+          48.0,
+          270.75
+        ]
+      ]
+    },
+    {
+      "title": "VII. RELATED WORK",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          126.0,
+          413.40234375
+        ],
+        [
+          222.75,
+          413.40234375
+        ],
+        [
+          222.75,
+          423.0
+        ],
+        [
+          126.0,
+          423.0
+        ]
+      ]
+    },
+    {
+      "title": "VIII. CONCLUSION",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          394.5,
+          288.0
+        ],
+        [
+          480.0,
+          288.0
+        ],
+        [
+          480.0,
+          297.0
+        ],
+        [
+          394.5,
+          297.0
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          407.302734375,
+          406.5
+        ],
+        [
+          465.0,
+          406.5
+        ],
+        [
+          465.0,
+          415.72265625
+        ],
+        [
+          407.302734375,
+          415.72265625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          132
+        ],
+        [
+          "Span",
+          54
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          211
+        ],
+        [
+          "Line",
+          101
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          113
+        ],
+        [
+          "Span",
+          58
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "TableCell",
+          6
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "FigureGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          744
+        ],
+        [
+          "Line",
+          111
+        ],
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Equation",
+          3
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          148
+        ],
+        [
+          "Line",
+          116
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          127
+        ],
+        [
+          "Span",
+          72
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Caption",
+          4
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "FigureGroup",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          409
+        ],
+        [
+          "Line",
+          99
+        ],
+        [
+          "TableCell",
+          12
+        ],
+        [
+          "ListItem",
+          10
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          107
+        ],
+        [
+          "Span",
+          59
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          240
+        ],
+        [
+          "Line",
+          80
+        ],
+        [
+          "Span",
+          44
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          116
+        ],
+        [
+          "Span",
+          13
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "FigureGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          158
+        ],
+        [
+          "Span",
+          71
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          396
+        ],
+        [
+          "Line",
+          117
+        ],
+        [
+          "ListItem",
+          33
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Enabling MoE on the Edge via Importance-Driven Expert Scheduling"
+}
