@@ -1,0 +1,1211 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Context-Driven Performance Modeling for Causal\nInference Operators on Neural Processing Units",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          59.765625,
+          53.09869384765625
+        ],
+        [
+          551.1773681640625,
+          53.09869384765625
+        ],
+        [
+          551.1773681640625,
+          104.90399169921875
+        ],
+        [
+          59.765625,
+          104.90399169921875
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          134.47265625,
+          390.19921875
+        ],
+        [
+          213.37522888183594,
+          390.19921875
+        ],
+        [
+          213.37522888183594,
+          400.6341857910156
+        ],
+        [
+          134.47265625,
+          400.6341857910156
+        ]
+      ]
+    },
+    {
+      "title": "A. Our Contributions",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          308.98828125,
+          330.2578125
+        ],
+        [
+          400.2366638183594,
+          330.2578125
+        ],
+        [
+          400.2366638183594,
+          340.8492126464844
+        ],
+        [
+          308.98828125,
+          340.8492126464844
+        ]
+      ]
+    },
+    {
+      "title": "II. BACKGROUND",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          399.1860046386719,
+          552.62109375
+        ],
+        [
+          475.8363952636719,
+          552.62109375
+        ],
+        [
+          475.8363952636719,
+          564.6859436035156
+        ],
+        [
+          399.1860046386719,
+          564.6859436035156
+        ]
+      ]
+    },
+    {
+      "title": "A. Fundamental Tradeoff for Long-Context Inference",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          308.98828125,
+          569.3114624023438
+        ],
+        [
+          529.5313110351562,
+          569.3114624023438
+        ],
+        [
+          529.5313110351562,
+          579.69140625
+        ],
+        [
+          308.98828125,
+          579.69140625
+        ]
+      ]
+    },
+    {
+      "title": "B. Heterogeneous Edge Platform with Neural Processing\nUnits (NPU)",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          48.41015625,
+          657.8065948486328
+        ],
+        [
+          300.62109375,
+          657.8065948486328
+        ],
+        [
+          300.62109375,
+          679.7241897583008
+        ],
+        [
+          48.41015625,
+          679.7241897583008
+        ]
+      ]
+    },
+    {
+      "title": "C. Causal Operators",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          48.9640007019043,
+          249.9395751953125
+        ],
+        [
+          135.66796875,
+          249.9395751953125
+        ],
+        [
+          135.66796875,
+          259.9022216796875
+        ],
+        [
+          48.9640007019043,
+          259.9022216796875
+        ]
+      ]
+    },
+    {
+      "title": "III. MICROBENCHMARKING KERNELS",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          355.9090270996094,
+          370.4765625
+        ],
+        [
+          519.1126708984375,
+          370.4765625
+        ],
+        [
+          519.1126708984375,
+          381.12115478515625
+        ],
+        [
+          355.9090270996094,
+          381.12115478515625
+        ]
+      ]
+    },
+    {
+      "title": "A. Experimental Setup",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          308.091796875,
+          385.95867919921875
+        ],
+        [
+          404.83941650390625,
+          385.95867919921875
+        ],
+        [
+          404.83941650390625,
+          395.9212646484375
+        ],
+        [
+          308.091796875,
+          395.9212646484375
+        ]
+      ]
+    },
+    {
+      "title": "B. Performance Instrumentation Methodology",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          309.5859375,
+          524.77734375
+        ],
+        [
+          499.8526916503906,
+          524.77734375
+        ],
+        [
+          499.8526916503906,
+          536.4521636962891
+        ],
+        [
+          309.5859375,
+          536.4521636962891
+        ]
+      ]
+    },
+    {
+      "title": "C. NPU Compiler Optimizations and Tensor Layout",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          48.0,
+          477.75
+        ],
+        [
+          264.1640625,
+          477.75
+        ],
+        [
+          264.1640625,
+          486.87890625
+        ],
+        [
+          48.0,
+          486.87890625
+        ]
+      ]
+    },
+    {
+      "title": "D. Operator Decomposition and Hardware Unit Mapping",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          308.390625,
+          522.75
+        ],
+        [
+          550.5,
+          522.75
+        ],
+        [
+          550.5,
+          533.28515625
+        ],
+        [
+          308.390625,
+          533.28515625
+        ]
+      ]
+    },
+    {
+      "title": "E. Device Utilization Analysis",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          310.482421875,
+          558.1645050048828
+        ],
+        [
+          436.4109191894531,
+          558.1645050048828
+        ],
+        [
+          436.4109191894531,
+          568.1271057128906
+        ],
+        [
+          310.482421875,
+          568.1271057128906
+        ]
+      ]
+    },
+    {
+      "title": "F. Scaling of Latency with Context Length",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          47.8125,
+          186.39068603515625
+        ],
+        [
+          223.5234375,
+          186.39068603515625
+        ],
+        [
+          223.5234375,
+          196.453125
+        ],
+        [
+          47.8125,
+          196.453125
+        ]
+      ]
+    },
+    {
+      "title": "G. Performance Scaling and Bottleneck Analysis",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          48.41015625,
+          384.01171875
+        ],
+        [
+          249.2421875,
+          384.01171875
+        ],
+        [
+          249.2421875,
+          394.0452575683594
+        ],
+        [
+          48.41015625,
+          394.0452575683594
+        ]
+      ]
+    },
+    {
+      "title": "H. Impact of State Dimension",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          310.78125,
+          308.99163818359375
+        ],
+        [
+          435.61383056640625,
+          308.99163818359375
+        ],
+        [
+          435.61383056640625,
+          318.9542236328125
+        ],
+        [
+          310.78125,
+          318.9542236328125
+        ]
+      ]
+    },
+    {
+      "title": "I. Cross-Class Performance Analysis",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          311.080078125,
+          465.1675109863281
+        ],
+        [
+          463.482421875,
+          465.1675109863281
+        ],
+        [
+          463.482421875,
+          475.1300964355469
+        ],
+        [
+          311.080078125,
+          475.1300964355469
+        ]
+      ]
+    },
+    {
+      "title": "IV. PERFORMANCE MODELING AND ROOFLINE ANALYSIS",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          309.5859375,
+          679.46484375
+        ],
+        [
+          561.2881469726562,
+          679.46484375
+        ],
+        [
+          561.2881469726562,
+          691.8480682373047
+        ],
+        [
+          309.5859375,
+          691.8480682373047
+        ]
+      ]
+    },
+    {
+      "title": "A. Effective Hardware Ceilings",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          47.25,
+          304.5
+        ],
+        [
+          178.5,
+          304.5
+        ],
+        [
+          178.5,
+          314.015625
+        ],
+        [
+          47.25,
+          314.015625
+        ]
+      ]
+    },
+    {
+      "title": "B. Operator Intensity Characterization",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          47.21484375,
+          425.77734375
+        ],
+        [
+          209.25,
+          425.25
+        ],
+        [
+          209.25,
+          435.0
+        ],
+        [
+          47.21484375,
+          436.5
+        ]
+      ]
+    },
+    {
+      "title": "C. Roofline Analysis",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          48.0,
+          570.75
+        ],
+        [
+          134.25,
+          570.75
+        ],
+        [
+          134.25,
+          580.5
+        ],
+        [
+          48.0,
+          580.5
+        ]
+      ]
+    },
+    {
+      "title": "D. Key Insights",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          48.0,
+          618.75
+        ],
+        [
+          114.75,
+          618.75
+        ],
+        [
+          114.75,
+          629.19140625
+        ],
+        [
+          48.0,
+          629.19140625
+        ]
+      ]
+    },
+    {
+      "title": "E. Efficiency Analysis",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          311.080078125,
+          349.5
+        ],
+        [
+          402.75,
+          349.5
+        ],
+        [
+          402.75,
+          359.25
+        ],
+        [
+          311.080078125,
+          359.25
+        ]
+      ]
+    },
+    {
+      "title": "V. DISCUSSION",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          402.75,
+          515.25
+        ],
+        [
+          471.75,
+          515.25
+        ],
+        [
+          471.75,
+          524.00390625
+        ],
+        [
+          402.75,
+          524.00390625
+        ]
+      ]
+    },
+    {
+      "title": "VI. RELATED WORKS",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          390.1600341796875,
+          372.0234375
+        ],
+        [
+          484.8626708984375,
+          372.0234375
+        ],
+        [
+          484.8626708984375,
+          383.0010681152344
+        ],
+        [
+          390.1600341796875,
+          383.0010681152344
+        ]
+      ]
+    },
+    {
+      "title": "A. Long-Context Inference on Edge Platforms",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          310.78125,
+          386.71875
+        ],
+        [
+          502.03125,
+          386.71875
+        ],
+        [
+          502.03125,
+          397.57818603515625
+        ],
+        [
+          310.78125,
+          397.57818603515625
+        ]
+      ]
+    },
+    {
+      "title": "B. Acceleration of Sequence Models on NPUs",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          310.78125,
+          586.3674926757812
+        ],
+        [
+          502.19390869140625,
+          586.3674926757812
+        ],
+        [
+          502.19390869140625,
+          596.3300933837891
+        ],
+        [
+          310.78125,
+          596.3300933837891
+        ]
+      ]
+    },
+    {
+      "title": "VII. CONCLUSION",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          132.6796875,
+          144.6328125
+        ],
+        [
+          214.7012481689453,
+          144.6328125
+        ],
+        [
+          214.7012481689453,
+          155.0521240234375
+        ],
+        [
+          132.6796875,
+          155.0521240234375
+        ]
+      ]
+    },
+    {
+      "title": "ACKNOWLEDGMENT",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          129.990234375,
+          339.92578125
+        ],
+        [
+          217.948974609375,
+          339.92578125
+        ],
+        [
+          217.948974609375,
+          349.9132385253906
+        ],
+        [
+          129.990234375,
+          349.9132385253906
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          145.828125,
+          438.15234375
+        ],
+        [
+          202.39466857910156,
+          438.15234375
+        ],
+        [
+          202.39466857910156,
+          449.1321716308594
+        ],
+        [
+          145.828125,
+          449.1321716308594
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          275
+        ],
+        [
+          "Line",
+          102
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Equation",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          232
+        ],
+        [
+          "Line",
+          82
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Equation",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          388
+        ],
+        [
+          "Line",
+          93
+        ],
+        [
+          "Text",
+          14
+        ],
+        [
+          "Equation",
+          5
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          620
+        ],
+        [
+          "Line",
+          140
+        ],
+        [
+          "Text",
+          22
+        ],
+        [
+          "Equation",
+          10
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          114
+        ],
+        [
+          "TableCell",
+          27
+        ],
+        [
+          "Span",
+          16
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          212
+        ],
+        [
+          "Line",
+          98
+        ],
+        [
+          "TableCell",
+          12
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          272
+        ],
+        [
+          "Line",
+          113
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          343
+        ],
+        [
+          "TableCell",
+          252
+        ],
+        [
+          "Line",
+          79
+        ],
+        [
+          "Caption",
+          5
+        ],
+        [
+          "Table",
+          5
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "TableGroup",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          100
+        ],
+        [
+          "Line",
+          97
+        ],
+        [
+          "Span",
+          45
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Caption",
+          3
+        ],
+        [
+          "Table",
+          3
+        ],
+        [
+          "TableGroup",
+          3
+        ],
+        [
+          "Footnote",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          134
+        ],
+        [
+          "Line",
+          59
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          340
+        ],
+        [
+          "Line",
+          131
+        ],
+        [
+          "ListItem",
+          28
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/Context-Driven Performance Modeling for Causal Inference Operators on Neural Processing Units"
+}

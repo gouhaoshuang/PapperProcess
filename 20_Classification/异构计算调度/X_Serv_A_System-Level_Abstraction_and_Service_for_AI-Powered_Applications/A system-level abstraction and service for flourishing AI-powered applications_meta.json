@@ -1,0 +1,776 @@
+{
+  "table_of_contents": [
+    {
+      "title": "A System-level Abstraction and Service for Flourishing AI-powered Applications",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          57.375,
+          70.3828125
+        ],
+        [
+          552.7936401367188,
+          70.3828125
+        ],
+        [
+          552.7936401367188,
+          85.21923828125
+        ],
+        [
+          57.375,
+          85.21923828125
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.7890625,
+          130.27606201171875
+        ],
+        [
+          94.5927505493164,
+          130.27606201171875
+        ],
+        [
+          94.5927505493164,
+          141.18511962890625
+        ],
+        [
+          53.7890625,
+          141.18511962890625
+        ]
+      ]
+    },
+    {
+      "title": "ACM Reference Format:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          53.676998138427734,
+          364.67578125
+        ],
+        [
+          148.8911895751953,
+          364.67578125
+        ],
+        [
+          148.8911895751953,
+          374.6925048828125
+        ],
+        [
+          53.676998138427734,
+          374.6925048828125
+        ]
+      ]
+    },
+    {
+      "title": "1 Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          54.0,
+          440.72503662109375
+        ],
+        [
+          129.56732177734375,
+          440.72503662109375
+        ],
+        [
+          129.56732177734375,
+          451.6341552734375
+        ],
+        [
+          54.0,
+          451.6341552734375
+        ]
+      ]
+    },
+    {
+      "title": "2 Background and Motivation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          317.953125,
+          512.0620422363281
+        ],
+        [
+          466.171875,
+          512.0620422363281
+        ],
+        [
+          466.171875,
+          522.9711608886719
+        ],
+        [
+          317.953125,
+          522.9711608886719
+        ]
+      ]
+    },
+    {
+      "title": "2.1 The Growing Popularity of AI Tasks",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          314.3671875,
+          572.8065185546875
+        ],
+        [
+          495.3490295410156,
+          572.8065185546875
+        ],
+        [
+          495.3490295410156,
+          582.78515625
+        ],
+        [
+          314.3671875,
+          582.78515625
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Challenges in Leveraging AI Capabilities",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          317.35546875,
+          170.9296875
+        ],
+        [
+          515.03515625,
+          170.9296875
+        ],
+        [
+          515.03515625,
+          181.09014892578125
+        ],
+        [
+          317.35546875,
+          181.09014892578125
+        ]
+      ]
+    },
+    {
+      "title": "2.3 Challenges in Managing Hardware Resources",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          52.59375,
+          391.1025390625
+        ],
+        [
+          270.7264404296875,
+          391.1025390625
+        ],
+        [
+          270.7264404296875,
+          401.06512451171875
+        ],
+        [
+          52.59375,
+          401.06512451171875
+        ]
+      ]
+    },
+    {
+      "title": "3 System-level Abstraction and Service",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          315.5625,
+          618.3460540771484
+        ],
+        [
+          506.9442138671875,
+          618.3460540771484
+        ],
+        [
+          506.9442138671875,
+          629.2551422119141
+        ],
+        [
+          315.5625,
+          629.2551422119141
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Design Overview",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          52.5,
+          349.5
+        ],
+        [
+          149.25,
+          349.5
+        ],
+        [
+          149.25,
+          359.25
+        ],
+        [
+          52.5,
+          359.25
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Capability Abstraction and API",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          52.5,
+          669.75
+        ],
+        [
+          213.36328125,
+          669.75
+        ],
+        [
+          213.36328125,
+          678.75
+        ],
+        [
+          52.5,
+          678.75
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Unified AI Service",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          53.490234375,
+          314.5895080566406
+        ],
+        [
+          154.353271484375,
+          314.5895080566406
+        ],
+        [
+          154.353271484375,
+          324.5520935058594
+        ],
+        [
+          53.490234375,
+          324.5520935058594
+        ]
+      ]
+    },
+    {
+      "title": "4 Proof of Concept",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          317.654296875,
+          411.3880310058594
+        ],
+        [
+          413.876953125,
+          411.3880310058594
+        ],
+        [
+          413.876953125,
+          422.2971496582031
+        ],
+        [
+          317.654296875,
+          422.2971496582031
+        ]
+      ]
+    },
+    {
+      "title": "5 Open Questions and Discussion",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          314.3671875,
+          237.83203125
+        ],
+        [
+          480.71875,
+          237.83203125
+        ],
+        [
+          480.71875,
+          248.97412109375
+        ],
+        [
+          314.3671875,
+          248.97412109375
+        ]
+      ]
+    },
+    {
+      "title": "Acknowledgments",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          317.9549865722656,
+          643.6320648193359
+        ],
+        [
+          403.716796875,
+          643.6320648193359
+        ],
+        [
+          403.716796875,
+          654.5411529541016
+        ],
+        [
+          317.9549865722656,
+          654.5411529541016
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          53.7890625,
+          72.703125
+        ],
+        [
+          104.68367004394531,
+          72.703125
+        ],
+        [
+          104.68367004394531,
+          84.49908447265625
+        ],
+        [
+          53.7890625,
+          84.49908447265625
+        ]
+      ]
+    },
+    {
+      "title": "doi:10.1145/3695053.3731092",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          70.822265625,
+          75.41015625
+        ],
+        [
+          169.56619262695312,
+          75.41015625
+        ],
+        [
+          169.56619262695312,
+          83.88861083984375
+        ],
+        [
+          70.822265625,
+          83.88861083984375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          249
+        ],
+        [
+          "Line",
+          100
+        ],
+        [
+          "Text",
+          16
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Footnote",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          289
+        ],
+        [
+          "Line",
+          109
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          245
+        ],
+        [
+          "Line",
+          106
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          140
+        ],
+        [
+          "Span",
+          26
+        ],
+        [
+          "Text",
+          14
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          240
+        ],
+        [
+          "Line",
+          105
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          234
+        ],
+        [
+          "Line",
+          103
+        ],
+        [
+          "TableCell",
+          56
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "TableGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          417
+        ],
+        [
+          "Line",
+          129
+        ],
+        [
+          "ListItem",
+          29
+        ],
+        [
+          "Reference",
+          28
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          423
+        ],
+        [
+          "Line",
+          130
+        ],
+        [
+          "ListItem",
+          30
+        ],
+        [
+          "Reference",
+          30
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          181
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Reference",
+          11
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/A system-level abstraction and service for flourishing AI-powered applications"
+}

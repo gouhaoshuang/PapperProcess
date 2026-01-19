@@ -1,0 +1,1249 @@
+{
+  "table_of_contents": [
+    {
+      "title": "From Principles to Practice: A Systematic Study of\nLLM Serving on Multi-core NPUs",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          70.5234375,
+          71.13629150390625
+        ],
+        [
+          541.4765625,
+          71.13629150390625
+        ],
+        [
+          541.4765625,
+          115.70880126953125
+        ],
+        [
+          70.5234375,
+          115.70880126953125
+        ]
+      ]
+    },
+    {
+      "title": "Abstract",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          52.892578125,
+          177.50390625
+        ],
+        [
+          99.60901641845703,
+          177.50390625
+        ],
+        [
+          99.60901641845703,
+          189.90643310546875
+        ],
+        [
+          52.892578125,
+          189.90643310546875
+        ]
+      ]
+    },
+    {
+      "title": "1 INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          54.0,
+          527.87109375
+        ],
+        [
+          166.5821075439453,
+          527.87109375
+        ],
+        [
+          166.5821075439453,
+          541.5463714599609
+        ],
+        [
+          54.0,
+          541.5463714599609
+        ]
+      ]
+    },
+    {
+      "title": "2 BACKGROUND AND RELATED WORK",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          54.984375,
+          580.46484375
+        ],
+        [
+          286.875,
+          580.46484375
+        ],
+        [
+          286.875,
+          589.5
+        ],
+        [
+          54.984375,
+          589.5
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Multi-core NPU Architecture",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          52.892578125,
+          595.93359375
+        ],
+        [
+          208.5,
+          595.93359375
+        ],
+        [
+          208.5,
+          605.25
+        ],
+        [
+          52.892578125,
+          605.25
+        ]
+      ]
+    },
+    {
+      "title": "2.2 NPU Simulator",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          52.5,
+          177.75
+        ],
+        [
+          145.5,
+          177.75
+        ],
+        [
+          145.5,
+          186.75
+        ],
+        [
+          52.5,
+          186.75
+        ]
+      ]
+    },
+    {
+      "title": "2.3 Accelerating LLM serving for Multi-core NPUs",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          316.7578125,
+          321.75
+        ],
+        [
+          551.25,
+          321.75
+        ],
+        [
+          551.25,
+          331.5
+        ],
+        [
+          316.7578125,
+          331.5
+        ]
+      ]
+    },
+    {
+      "title": "3 NpuSim: a Multi-level Simulation Framework for Multi-core NPUs",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          52.59375,
+          134.578125
+        ],
+        [
+          254.25,
+          134.578125
+        ],
+        [
+          254.25,
+          159.0
+        ],
+        [
+          52.59375,
+          159.0
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Multi-level Simulation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          52.5,
+          285.0
+        ],
+        [
+          179.25,
+          285.0
+        ],
+        [
+          179.25,
+          294.75
+        ],
+        [
+          52.5,
+          294.75
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Customized Scheduler",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          317.25,
+          169.3828125
+        ],
+        [
+          441.966796875,
+          169.3828125
+        ],
+        [
+          441.966796875,
+          177.75
+        ],
+        [
+          317.25,
+          177.75
+        ]
+      ]
+    },
+    {
+      "title": "4 Optimizing LLM Serving Systems on Multi-core NPUs",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          314.96484375,
+          399.75
+        ],
+        [
+          533.25,
+          399.75
+        ],
+        [
+          533.25,
+          423.0703125
+        ],
+        [
+          314.96484375,
+          423.0703125
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Tensor Partition and Core Placement",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          315.5625,
+          631.5
+        ],
+        [
+          508.5,
+          631.5
+        ],
+        [
+          508.5,
+          641.56640625
+        ],
+        [
+          315.5625,
+          641.56640625
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Hierarchy Memory Management",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          317.25,
+          74.25
+        ],
+        [
+          490.078125,
+          74.25
+        ],
+        [
+          490.078125,
+          83.53125
+        ],
+        [
+          317.25,
+          83.53125
+        ]
+      ]
+    },
+    {
+      "title": "4.3 PD Disaggregation and PD Fusion",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          316.5,
+          282.75
+        ],
+        [
+          493.5,
+          282.75
+        ],
+        [
+          493.5,
+          292.5
+        ],
+        [
+          316.5,
+          292.5
+        ]
+      ]
+    },
+    {
+      "title": "4.3.1 PD Disaggregation on multi-core NPUs.",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          316.16015625,
+          608.25
+        ],
+        [
+          527.25,
+          608.25
+        ],
+        [
+          527.25,
+          618.0
+        ],
+        [
+          316.16015625,
+          618.0
+        ]
+      ]
+    },
+    {
+      "title": "5 EVALUATION",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          316.16015625,
+          515.2712097167969
+        ],
+        [
+          412.006591796875,
+          515.2712097167969
+        ],
+        [
+          412.006591796875,
+          527.2264099121094
+        ],
+        [
+          316.16015625,
+          527.2264099121094
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Experiment Setup",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          316.16015625,
+          530.96484375
+        ],
+        [
+          421.73541259765625,
+          530.96484375
+        ],
+        [
+          421.73541259765625,
+          541.6833190917969
+        ],
+        [
+          316.16015625,
+          541.6833190917969
+        ]
+      ]
+    },
+    {
+      "title": "5.2 Simulator Validation",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          52.5,
+          157.78125
+        ],
+        [
+          171.0,
+          156.75
+        ],
+        [
+          171.0,
+          165.75
+        ],
+        [
+          52.5,
+          167.25
+        ]
+      ]
+    },
+    {
+      "title": "5.3 Hardware Configuration Space Exploration:",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          53.7890625,
+          597.0
+        ],
+        [
+          275.25,
+          597.0
+        ],
+        [
+          275.25,
+          607.53515625
+        ],
+        [
+          53.7890625,
+          607.53515625
+        ]
+      ]
+    },
+    {
+      "title": "5.4 TP and Core Placement:",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          317.35546875,
+          204.9609375
+        ],
+        [
+          450.0,
+          204.9609375
+        ],
+        [
+          450.0,
+          214.5
+        ],
+        [
+          317.35546875,
+          214.5
+        ]
+      ]
+    },
+    {
+      "title": "5.5 LLM Serving",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          316.458984375,
+          667.08984375
+        ],
+        [
+          398.25,
+          667.08984375
+        ],
+        [
+          398.25,
+          677.25
+        ],
+        [
+          316.458984375,
+          677.25
+        ]
+      ]
+    },
+    {
+      "title": "5.6 Guidance for NPU Hardware Architecture and LLM System Design",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          316.5,
+          301.5
+        ],
+        [
+          550.5,
+          301.5
+        ],
+        [
+          550.5,
+          322.91015625
+        ],
+        [
+          316.5,
+          322.91015625
+        ]
+      ]
+    },
+    {
+      "title": "6 CONCLUSION",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          317.953125,
+          620.25
+        ],
+        [
+          414.0,
+          620.25
+        ],
+        [
+          414.0,
+          629.25
+        ],
+        [
+          317.953125,
+          629.25
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          52.5,
+          135.73828125
+        ],
+        [
+          114.75,
+          135.73828125
+        ],
+        [
+          114.75,
+          144.75
+        ],
+        [
+          52.5,
+          144.75
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          283
+        ],
+        [
+          "Line",
+          99
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Footnote",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          104
+        ],
+        [
+          "Span",
+          30
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          94
+        ],
+        [
+          "Span",
+          78
+        ],
+        [
+          "TableCell",
+          40
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          125
+        ],
+        [
+          "Span",
+          67
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          121
+        ],
+        [
+          "Span",
+          33
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          110
+        ],
+        [
+          "Span",
+          50
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          78
+        ],
+        [
+          "Span",
+          38
+        ],
+        [
+          "TableCell",
+          30
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          271
+        ],
+        [
+          "Line",
+          105
+        ],
+        [
+          "TableCell",
+          27
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          123
+        ],
+        [
+          "Span",
+          27
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          141
+        ],
+        [
+          "Span",
+          15
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Figure",
+          5
+        ],
+        [
+          "Caption",
+          5
+        ],
+        [
+          "FigureGroup",
+          5
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          123
+        ],
+        [
+          "Span",
+          24
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          216
+        ],
+        [
+          "Span",
+          98
+        ],
+        [
+          "ListItem",
+          30
+        ],
+        [
+          "Reference",
+          28
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          224
+        ],
+        [
+          "Span",
+          103
+        ],
+        [
+          "ListItem",
+          32
+        ],
+        [
+          "Reference",
+          30
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          215
+        ],
+        [
+          "Span",
+          93
+        ],
+        [
+          "ListItem",
+          27
+        ],
+        [
+          "Reference",
+          25
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 14,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          24
+        ],
+        [
+          "Span",
+          15
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/From Principles to Practice A Systematic Study of LLM Serving on Multi-core NPUs"
+}

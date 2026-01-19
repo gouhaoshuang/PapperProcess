@@ -1,0 +1,958 @@
+{
+  "table_of_contents": [
+    {
+      "title": "LLM-NPU: Towards Efficient Foundation Model Inference on Low-Power Neural Processing Units",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          60.0,
+          52.5
+        ],
+        [
+          551.25,
+          51.0
+        ],
+        [
+          551.25,
+          99.75
+        ],
+        [
+          60.0,
+          99.75
+        ]
+      ]
+    },
+    {
+      "title": "I. INTRODUCTION",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          133.5,
+          428.87109375
+        ],
+        [
+          214.5,
+          428.87109375
+        ],
+        [
+          214.5,
+          438.75
+        ],
+        [
+          133.5,
+          438.75
+        ]
+      ]
+    },
+    {
+      "title": "II. RELATED WORKS",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          390.75,
+          552.62109375
+        ],
+        [
+          483.75,
+          552.62109375
+        ],
+        [
+          483.75,
+          561.12890625
+        ],
+        [
+          390.75,
+          561.12890625
+        ]
+      ]
+    },
+    {
+      "title": "III. PRELIMINARIES: NPU ARCHITECTURE OVERVIEW",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          53.7890625,
+          337.9921875
+        ],
+        [
+          291.3835144042969,
+          337.9921875
+        ],
+        [
+          291.3835144042969,
+          349.046875
+        ],
+        [
+          53.7890625,
+          349.046875
+        ]
+      ]
+    },
+    {
+      "title": "IV. LLM-NPU SOFTWARE OPTIMIZATIONS",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          80.68359375,
+          673.27734375
+        ],
+        [
+          267.4807434082031,
+          673.27734375
+        ],
+        [
+          267.4807434082031,
+          684.0677795410156
+        ],
+        [
+          80.68359375,
+          684.0677795410156
+        ]
+      ]
+    },
+    {
+      "title": "A. Fusion and Tiling Strategies",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          310.18359375,
+          284.625
+        ],
+        [
+          441.1829528808594,
+          284.625
+        ],
+        [
+          441.1829528808594,
+          295.1805419921875
+        ],
+        [
+          310.18359375,
+          295.1805419921875
+        ]
+      ]
+    },
+    {
+      "title": "B. Weight Compression",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          47.513671875,
+          119.8828125
+        ],
+        [
+          145.53146362304688,
+          119.8828125
+        ],
+        [
+          145.53146362304688,
+          130.23248291015625
+        ],
+        [
+          47.513671875,
+          130.23248291015625
+        ]
+      ]
+    },
+    {
+      "title": "C. KV caching and KV compression",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          48.708984375,
+          431.96484375
+        ],
+        [
+          198.8214111328125,
+          431.96484375
+        ],
+        [
+          198.8214111328125,
+          442.5732116699219
+        ],
+        [
+          48.708984375,
+          442.5732116699219
+        ]
+      ]
+    },
+    {
+      "title": "D. LLM Static Shape Inference",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          311.677734375,
+          219.400390625
+        ],
+        [
+          440.77447509765625,
+          219.400390625
+        ],
+        [
+          440.77447509765625,
+          229.36297607421875
+        ],
+        [
+          311.677734375,
+          229.36297607421875
+        ]
+      ]
+    },
+    {
+      "title": "E. Speculative Decoding on Static-Shape NPUs",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          309.5859375,
+          608.30859375
+        ],
+        [
+          508.2709655761719,
+          608.30859375
+        ],
+        [
+          508.2709655761719,
+          618.3597717285156
+        ],
+        [
+          309.5859375,
+          618.3597717285156
+        ]
+      ]
+    },
+    {
+      "title": "Algorithm 1: Static Shape Inference for LLM Decoder with Optimized KV Cache",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          50.80078125,
+          51.0
+        ],
+        [
+          276.0,
+          51.0
+        ],
+        [
+          276.0,
+          71.25
+        ],
+        [
+          50.80078125,
+          71.25
+        ]
+      ]
+    },
+    {
+      "title": "V. LLM-NPU HARDWARE FEATURES",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          92.63671875,
+          268.5
+        ],
+        [
+          256.5,
+          267.0
+        ],
+        [
+          256.5,
+          276.0
+        ],
+        [
+          92.63671875,
+          277.5
+        ]
+      ]
+    },
+    {
+      "title": "A. Systolic to Compute-in/near-memory Transition",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          47.25,
+          320.25
+        ],
+        [
+          256.5,
+          320.25
+        ],
+        [
+          256.5,
+          330.0
+        ],
+        [
+          47.25,
+          330.0
+        ]
+      ]
+    },
+    {
+      "title": "B. Extended Input Channel (IC) Accumulation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          310.5,
+          210.375
+        ],
+        [
+          504.0,
+          210.375
+        ],
+        [
+          504.0,
+          219.75
+        ],
+        [
+          310.5,
+          219.75
+        ]
+      ]
+    },
+    {
+      "title": "C. Sparsity Acceleration and Compression",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          309.5859375,
+          552.62109375
+        ],
+        [
+          489.0,
+          552.62109375
+        ],
+        [
+          489.0,
+          563.25
+        ],
+        [
+          309.5859375,
+          563.25
+        ]
+      ]
+    },
+    {
+      "title": "D. GEMM Engine Optimization",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          48.111328125,
+          363.90234375
+        ],
+        [
+          182.583984375,
+          363.90234375
+        ],
+        [
+          182.583984375,
+          373.8973083496094
+        ],
+        [
+          48.111328125,
+          373.8973083496094
+        ]
+      ]
+    },
+    {
+      "title": "E. Operator and Dataflow-Level Fusion",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          48.9639892578125,
+          629.96484375
+        ],
+        [
+          213.8151092529297,
+          629.96484375
+        ],
+        [
+          213.8151092529297,
+          640.7422180175781
+        ],
+        [
+          48.9639892578125,
+          640.7422180175781
+        ]
+      ]
+    },
+    {
+      "title": "F. Programmable Activation Functions",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          311.9765625,
+          474.2107849121094
+        ],
+        [
+          472.1484375,
+          474.2107849121094
+        ],
+        [
+          472.1484375,
+          484.1733703613281
+        ],
+        [
+          311.9765625,
+          484.1733703613281
+        ]
+      ]
+    },
+    {
+      "title": "G. Multi-Precision and MX Format Support in Hardware",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          47.8125,
+          271.08984375
+        ],
+        [
+          285.75,
+          271.08984375
+        ],
+        [
+          285.75,
+          280.5
+        ],
+        [
+          47.8125,
+          280.5
+        ]
+      ]
+    },
+    {
+      "title": "VI. EXPERIMENTAL RESULTS",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          109.37109375,
+          660.75
+        ],
+        [
+          238.5,
+          660.75
+        ],
+        [
+          238.5,
+          669.75
+        ],
+        [
+          109.37109375,
+          669.75
+        ]
+      ]
+    },
+    {
+      "title": "A. Models and Datasets",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          47.25,
+          673.27734375
+        ],
+        [
+          149.25,
+          673.27734375
+        ],
+        [
+          149.25,
+          681.78515625
+        ],
+        [
+          47.25,
+          681.78515625
+        ]
+      ]
+    },
+    {
+      "title": "B. Results: Accuracy Analysis",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          311.25,
+          387.10546875
+        ],
+        [
+          437.25,
+          387.10546875
+        ],
+        [
+          437.25,
+          396.75
+        ],
+        [
+          311.25,
+          396.75
+        ]
+      ]
+    },
+    {
+      "title": "C. Results: Hardware Performance Analysis",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          47.8125,
+          529.8397216796875
+        ],
+        [
+          230.84124755859375,
+          529.8397216796875
+        ],
+        [
+          230.84124755859375,
+          539.8023223876953
+        ],
+        [
+          47.8125,
+          539.8023223876953
+        ]
+      ]
+    },
+    {
+      "title": "VII. CONCLUSIONS AND FUTURE WORKS",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          347.6900634765625,
+          682.55859375
+        ],
+        [
+          527.330810546875,
+          682.55859375
+        ],
+        [
+          527.330810546875,
+          694.9798049926758
+        ],
+        [
+          347.6900634765625,
+          694.9798049926758
+        ]
+      ]
+    },
+    {
+      "title": "REFERENCES",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          144.931640625,
+          211.23931884765625
+        ],
+        [
+          202.39846801757812,
+          211.23931884765625
+        ],
+        [
+          202.39846801757812,
+          221.201904296875
+        ],
+        [
+          144.931640625,
+          221.201904296875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          120
+        ],
+        [
+          "Span",
+          58
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "PageHeader",
+          2
+        ],
+        [
+          "PageFooter",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          263
+        ],
+        [
+          "Line",
+          101
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          336
+        ],
+        [
+          "Line",
+          121
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          133
+        ],
+        [
+          "Span",
+          60
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          286
+        ],
+        [
+          "Line",
+          106
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          132
+        ],
+        [
+          "TableCell",
+          102
+        ],
+        [
+          "Span",
+          55
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "TableGroup",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          378
+        ],
+        [
+          "Line",
+          105
+        ],
+        [
+          "TableCell",
+          14
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Caption",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "FigureGroup",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          724
+        ],
+        [
+          "Line",
+          154
+        ],
+        [
+          "ListItem",
+          57
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data/LLM-NPU_Towards_Efficient_Foundation_Model_Inference_on_Low-Power_Neural_Processing_Units"
+}
