@@ -10,7 +10,8 @@ from pathlib import Path
 # 添加父目录到路径
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 from utils.logger import get_logger
 
@@ -45,19 +46,25 @@ def format_subsections_text(subsections: list[dict]) -> str:
 
 
 def expand_section(
-    model: genai.GenerativeModel,
+    client: genai.Client,
+    model_name: str,
     uploaded_files: list,
     section: dict,
     expansion_prompt_template: str,
+    system_instruction: str = None,
+    temperature: float = 1.0,
 ) -> str:
     """
     扩写单个段落。
 
     Args:
-        model: Gemini 模型实例
+        client: Gemini API 客户端
+        model_name: 模型名称
         uploaded_files: 上传的文件列表 (用于图片引用)
         section: 段落信息字典（包含 title, subsections, key_figures, key_formulas）
         expansion_prompt_template: 扩写提示词模板
+        system_instruction: 系统指令
+        temperature: 生成温度
 
     Returns:
         生成的 Markdown 内容
@@ -83,7 +90,14 @@ def expand_section(
 
     try:
         logger.info(f"扩写段落: {section.get('title', 'Unknown')}")
-        response = model.generate_content(contents)
+        response = client.models.generate_content(
+            model=model_name,
+            contents=contents,
+            config=types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                temperature=temperature,
+            ),
+        )
 
         if response.text:
             logger.info(f"段落扩写成功, 长度: {len(response.text)} 字符")
@@ -98,10 +112,13 @@ def expand_section(
 
 
 def expand_all_sections(
-    model: genai.GenerativeModel,
+    client: genai.Client,
+    model_name: str,
     uploaded_files: list,
     outline: dict,
     expansion_prompt_template: str,
+    system_instruction: str = None,
+    temperature: float = 1.0,
     retry_delay: float = 1.0,
     max_retries: int = 3,
 ) -> list[dict]:
@@ -109,10 +126,13 @@ def expand_all_sections(
     扩写所有段落（带报错重试机制）。
 
     Args:
-        model: Gemini 模型实例
+        client: Gemini API 客户端
+        model_name: 模型名称
         uploaded_files: 上传的文件列表
         outline: 大纲字典
         expansion_prompt_template: 扩写提示词模板
+        system_instruction: 系统指令
+        temperature: 生成温度
         retry_delay: 请求间隔 (秒)
         max_retries: 单个段落最大重试次数
 
@@ -132,10 +152,13 @@ def expand_all_sections(
         # 报错重试机制
         for attempt in range(max_retries + 1):
             content = expand_section(
-                model=model,
+                client=client,
+                model_name=model_name,
                 uploaded_files=uploaded_files,
                 section=section,
                 expansion_prompt_template=expansion_prompt_template,
+                system_instruction=system_instruction,
+                temperature=temperature,
             )
 
             if content:
