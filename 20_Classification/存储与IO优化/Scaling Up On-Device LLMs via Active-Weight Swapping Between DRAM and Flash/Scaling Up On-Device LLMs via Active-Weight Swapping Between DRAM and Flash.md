@@ -10,7 +10,7 @@ tags:
 - 上下文稀疏性
 - 内存管理
 - 自蒸馏
-title: 'ActiveFlow: LLM inference framework for adaptive DRAM usage'
+title: 'Scaling Up On-Device LLMs via Active-Weight Swapping Between DRAM and Flash'
 ---
 
 # Scaling Up On-Device LLMs via Active-Weight Swapping Between DRAM and Flash

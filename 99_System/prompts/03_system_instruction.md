@@ -33,30 +33,3 @@
 3. 使用 Markdown 格式组织内容
 4. 图片引用使用 `<图片 X>` 格式
 
----
-
-## 使用方式
-
-### Python SDK 示例
-
-```python
-import google.generativeai as genai
-
-# 读取系统指令
-with open("99_System/prompts/03_system_instruction.md", "r", encoding="utf-8") as f:
-    system_instruction = f.read()
-
-# 创建模型时使用
-model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash',
-    system_instruction=system_instruction
-)
-
-# 或者创建缓存时使用
-cache = caching.CachedContent.create(
-    model='models/gemini-1.5-flash-001',
-    system_instruction=system_instruction,
-    contents=[paper_content],
-    ttl=datetime.timedelta(minutes=60)
-)
-```

@@ -1,0 +1,156 @@
+{
+  "paper_title": "ActiveFlow: Scaling Up On-Device LLMs via Active-Weight Swapping Between DRAM and Flash",
+  "authors": "Fucheng Jia, Huiqiang Jiang, Yunxin Liu, Zewen Wu, Qianxi Zhang, Ju Ren, Ting Cao, Shiqi Jiang, Yuqing Yang, Deyu Zhang",
+  "year": "2026",
+  "one_liner": "ActiveFlow 是一种针对移动设备的 LLM 推理框架，通过跨层活跃权重预加载、动态内存管理和稀疏感知自蒸馏技术，实现了 DRAM 与 Flash 之间的高效数据交换，从而在受限内存下运行大模型。",
+  "sections": [
+    {
+      "id": 1,
+      "title": "背景、动机与关键观察",
+      "subsections": [
+        {
+          "subtitle": "移动端大模型部署的内存瓶颈",
+          "key_points": [
+            "DRAM 容量限制与模型尺寸增长的矛盾",
+            "移动操作系统对后台应用的内存回收机制",
+            "传统 DRAM-Flash 交换技术在 LLM 自回归解码中的局限性（I/O 瓶颈）"
+          ]
+        },
+        {
+          "subtitle": "上下文稀疏性与现有方法的不足",
+          "key_points": [
+            "活跃权重（Active Weights）的概念及其上限分析（<15%）",
+            "现有基于 ReLU 稀疏性方法的局限（依赖特定架构、需要额外预测器）",
+            "Top-K 激活稀疏性的优势（架构无关、无额外预测器）"
+          ]
+        },
+        {
+          "subtitle": "两个关键观察：跨层相似性与时间局部性",
+          "key_points": [
+            "观察一：残差连接导致跨层输入激活具有高度相似性",
+            "LayerNorm 和权重幅度对激活分布的影响分析",
+            "观察二：解码过程中存在热点活跃权重（Hot Active Weights）"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 1",
+        "图片 2",
+        "图片 3",
+        "图片 4",
+        "图片 5",
+        "图片 6"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 2,
+      "title": "核心技术一：跨层活跃权重预加载与流水线",
+      "subsections": [
+        {
+          "subtitle": "跨层活跃权重预加载 (Cross-layer Active Weight Preloading)",
+          "key_points": [
+            "如何利用当前层激活预测未来 N 层的活跃权重",
+            "解决 Flash 读取小块数据（Small Chunk）带宽低效的问题",
+            "层组（Layer Group）的概念与预加载策略",
+            "未命中权重的按需加载（On-demand loading）机制"
+          ]
+        },
+        {
+          "subtitle": "Flash 数据布局重排",
+          "key_points": [
+            "打破张量和层边界的存储布局",
+            "按通道 ID -> 层 ID -> 算子类型的顺序重排权重",
+            "如何通过布局优化提升 I/O 读取的 Chunk 大小"
+          ]
+        },
+        {
+          "subtitle": "计算-加载重叠流水线 (Swapping Pipeline)",
+          "key_points": [
+            "ActiveFlow 的四阶段流水线设计：计算、Top-K、按需加载、预加载",
+            "最大化计算与 I/O 重叠的执行逻辑",
+            "系统成本模型：最小化解码延迟的优化目标函数"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 7",
+        "图片 8",
+        "图片 9",
+        "图片 10",
+        "图片 11"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 3,
+      "title": "核心技术二：动态缓存与自蒸馏优化",
+      "subsections": [
+        {
+          "subtitle": "弹性执行与动态权重缓存",
+          "key_points": [
+            "基于可用内存动态调整系统参数（稀疏度、层组大小、缓存大小）",
+            "基于激活频率统计（LFU）的缓存驱逐策略",
+            "如何通过动态缓存提高缓存命中率并减少 Flash 读取"
+          ]
+        },
+        {
+          "subtitle": "Top-K 稀疏感知自蒸馏 (Sparsity-aware Self-distillation)",
+          "key_points": [
+            "Top-K 稀疏性在大比例稀疏下的精度损失问题",
+            "基于 KL 散度的教师-学生网络蒸馏方法",
+            "梯度直通估计器 (STE) 在处理 Mask 操作中的应用",
+            "“一次蒸馏，全尺度适应” (One-distill-all-scale) 特性"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 12",
+        "图片 13"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 4,
+      "title": "系统实现与实验评估",
+      "subsections": [
+        {
+          "subtitle": "系统实现细节",
+          "key_points": [
+            "基于 llama.cpp 的 CPU 后端开发",
+            "利用 io_uring 实现异步高效 I/O 读取",
+            "计算线程与加载线程的原子信号量同步机制"
+          ]
+        },
+        {
+          "subtitle": "端到端性能评估",
+          "key_points": [
+            "解码速度对比：ActiveFlow vs. llama.cpp (全内存)",
+            "不同内存预算下的性能表现（Pareto 前沿分析）",
+            "困惑度 (PPL) 与下游任务准确率评估",
+            "在低端设备（如 Pixel 6）上运行 Mixtral-8x7B 的突破"
+          ]
+        },
+        {
+          "subtitle": "消融实验与技术分析",
+          "key_points": [
+            "跨层预加载、流水线和动态缓存对速度的独立贡献",
+            "自蒸馏与 STE 对模型精度的恢复效果",
+            "缓存大小对 Flash 读取量的影响",
+            "功耗与能效分析"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 14",
+        "图片 15",
+        "图片 16",
+        "图片 17",
+        "图片 18",
+        "图片 19",
+        "图片 20"
+      ],
+      "key_formulas": false
+    }
+  ]
+}
