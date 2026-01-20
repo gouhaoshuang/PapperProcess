@@ -156,23 +156,49 @@ def process_paper(client: genai.Client, paper_dir: Path) -> bool:
         cleanup_uploaded_files(client, uploaded_files)
 
 
+def is_category_dir(dir_path: Path) -> bool:
+    """
+    判断目录是否为分类目录（子目录包含 .md 文件）。
+
+    分类目录的子目录是论文目录，论文目录中应该包含 .md 文件。
+    顶层目录（如 20_Classification）的子目录是分类目录，不直接包含 .md 文件。
+    """
+    for sub_dir in dir_path.iterdir():
+        if sub_dir.is_dir():
+            # 检查子目录中是否有 .md 文件
+            md_files = list(sub_dir.glob("*.md"))
+            if md_files:
+                return True
+    return False
+
+
 def scan_and_process(client: genai.Client, input_dir: Path, limit: int = None):
     """
     扫描目录并处理所有论文。
 
+    智能识别目录层级:
+    - 如果 input_dir 是分类目录（子目录包含 .md 文件），直接处理子目录中的论文
+    - 如果 input_dir 是顶层目录（如 20_Classification），遍历分类目录再处理论文
+
     Args:
         client: Gemini API 客户端
-        input_dir: 输入目录 (20_Classification)
+        input_dir: 输入目录 (可以是顶层目录或分类目录)
         limit: 最大处理数量 (None 表示不限制)
     """
     processed = 0
     success = 0
 
-    # 遍历分类目录
-    for category_dir in input_dir.iterdir():
-        if not category_dir.is_dir():
-            continue
+    # 智能判断目录层级
+    if is_category_dir(input_dir):
+        # input_dir 是分类目录，直接处理其中的论文
+        logger.info(f"检测到分类目录: {input_dir.name}")
+        category_dirs = [input_dir]
+    else:
+        # input_dir 是顶层目录，获取所有分类目录
+        category_dirs = [d for d in input_dir.iterdir() if d.is_dir()]
 
+    # 遍历分类目录
+    for category_dir in category_dirs:
         logger.info(f"扫描分类: {category_dir.name}")
 
         # 遍历论文目录
@@ -211,6 +237,7 @@ def main():
         help="输入目录 (默认使用配置中的 input_dir)",
     )
     """
+    python summarize.py -i "D:\code\终端推理\20_Classification\动态推理"
     python 99_System/scripts/summarize.py --paper "D:\code\终端推理\20_Classification\测试时计算缩放\Scaling_LLM_Test-Time_Compute_on_Smartphones_with_Mobi"
     python summarize.py --paper "D:\code\终端推理\20_Classification\测试时计算缩放\Scaling_LLM_Test-Time_Compute_on_Smartphones_with_Mobi"
     """

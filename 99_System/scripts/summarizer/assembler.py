@@ -23,8 +23,8 @@ def find_image_in_source(source_content: str, figure_id: str) -> str | None:
 
     匹配逻辑：
     1. 在原始论文中搜索 "Figure X." 或 "Figure X:" (X 为图片编号)
-    2. 检查该行的前面第二行是否包含 "![](" 标志
-    3. 如果有，提取图片路径
+    2. 向上检查前面最多 20 行，找到最近的包含 "![](" 的行
+    3. 如果找到，提取图片路径
 
     Args:
         source_content: 原始论文 Markdown 内容
@@ -41,9 +41,10 @@ def find_image_in_source(source_content: str, figure_id: str) -> str | None:
 
     for i, line in enumerate(lines):
         if search_pattern.search(line):
-            # 检查前面第二行（i-2）
-            if i >= 2:
-                prev_line = lines[i - 2]
+            # 向上检查前面最多 20 行，找到最近的图片行
+            search_range = min(i, 20)  # 最多向上搜索 20 行，但不超过当前行号
+            for offset in range(1, search_range + 1):
+                prev_line = lines[i - offset]
                 # 检查是否包含 Markdown 图片语法 "![]("
                 if "![](" in prev_line:
                     # 提取图片路径：匹配 ![...](...) 格式
