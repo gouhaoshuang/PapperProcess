@@ -12,7 +12,8 @@ from pathlib import Path
 # 添加父目录到路径
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 from utils.logger import get_logger
 
@@ -50,18 +51,24 @@ def load_prompt_template(prompt_file: str | Path) -> str:
 
 
 def generate_outline(
-    model: genai.GenerativeModel,
+    client: genai.Client,
+    model_name: str,
     uploaded_files: list,
     outline_prompt: str,
+    system_instruction: str = None,
+    temperature: float = 1.0,
     max_retries: int = 3,
 ) -> dict | None:
     """
     生成论文大纲。
 
     Args:
-        model: Gemini 模型实例
+        client: Gemini API 客户端
+        model_name: 模型名称
         uploaded_files: 上传的文件列表 (Markdown + 图片)
         outline_prompt: 大纲生成提示词
+        system_instruction: 系统指令
+        temperature: 生成温度
         max_retries: 最大重试次数
 
     Returns:
@@ -73,7 +80,14 @@ def generate_outline(
     for attempt in range(max_retries):
         try:
             logger.info(f"生成大纲 (尝试 {attempt + 1}/{max_retries})...")
-            response = model.generate_content(contents)
+            response = client.models.generate_content(
+                model=model_name,
+                contents=contents,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction,
+                    temperature=temperature,
+                ),
+            )
 
             if not response.text:
                 logger.warning("API 返回空响应")

@@ -10,7 +10,7 @@ from pathlib import Path
 # 添加父目录到路径
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import google.generativeai as genai
+from google import genai
 
 from utils.logger import get_logger
 
@@ -58,11 +58,12 @@ def collect_paper_resources(
     return resources
 
 
-def upload_to_gemini(resources: list[Path]) -> list:
+def upload_to_gemini(client: genai.Client, resources: list[Path]) -> list:
     """
     将资源文件上传至 Gemini API。
 
     Args:
+        client: Gemini API 客户端
         resources: 资源文件路径列表
 
     Returns:
@@ -73,7 +74,7 @@ def upload_to_gemini(resources: list[Path]) -> list:
     for file_path in resources:
         try:
             logger.info(f"上传文件: {file_path.name}")
-            uploaded = genai.upload_file(str(file_path))
+            uploaded = client.files.upload(file=str(file_path))
             uploaded_files.append(uploaded)
             logger.info(f"上传成功: {uploaded.name}")
         except Exception as e:
@@ -104,16 +105,17 @@ def read_markdown_content(file_path: str | Path) -> str:
         return ""
 
 
-def cleanup_uploaded_files(uploaded_files: list) -> None:
+def cleanup_uploaded_files(client: genai.Client, uploaded_files: list) -> None:
     """
     清理已上传的文件 (节省存储费用)。
 
     Args:
+        client: Gemini API 客户端
         uploaded_files: 上传后的文件对象列表
     """
     for file in uploaded_files:
         try:
-            genai.delete_file(file.name)
+            client.files.delete(name=file.name)
             logger.info(f"已删除上传文件: {file.name}")
         except Exception as e:
             logger.warning(f"删除文件失败: {file.name}, 错误: {e}")

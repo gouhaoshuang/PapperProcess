@@ -1,0 +1,152 @@
+{
+  "paper_title": "Scaling LLM Test-Time Compute on Smartphones with Mobile NPUs",
+  "authors": "Zi Xuhao, Huang Minxing, Wei Jianyu, Wang Tuowei, Jiang Huiqiang, Jiang Shiqi, Cao Ting, Ju Ren",
+  "year": "2026",
+  "one_liner": "本文提出了一种在移动端NPU上实现LLM测试时计算缩放（Test-Time Scaling）的系统，通过硬件感知的瓦片量化和基于LUT的算子优化，利用解码阶段闲置的NPU矩阵计算能力，使小模型能以较低成本达到大模型的性能。",
+  "sections": [
+    {
+      "id": 1,
+      "title": "背景与动机：移动端测试时缩放的潜力",
+      "subsections": [
+        {
+          "subtitle": "测试时计算缩放（Test-Time Scaling）",
+          "key_points": [
+            "测试时缩放的核心概念：通过增加推理计算量（如多路径采样）提升模型性能",
+            "常见的缩放方法：Best-of-N、Beam Search及其在数学推理任务中的表现",
+            "移动端应用该范式的反直觉性：资源受限设备是否适合增加计算量？"
+          ]
+        },
+        {
+          "subtitle": "移动NPU的架构特性与机遇",
+          "key_points": [
+            "移动NPU的典型架构：矩阵单元（HMX）与向量单元（HVX）的异构组合",
+            "解码阶段的计算浪费：GEMV操作导致矩阵单元利用率低下（Tile大小不匹配）",
+            "核心洞察：利用闲置的矩阵计算能力支持并行采样，理论上不显著增加延迟"
+          ]
+        },
+        {
+          "subtitle": "面临的主要挑战",
+          "key_points": [
+            "精度挑战：NPU缺乏对细粒度组量化（Fine-grained Group Quantization）的原生支持",
+            "效率挑战：向量单元的通用计算能力和内存带宽远低于矩阵单元",
+            "QNN框架的局限性：现有闭源栈不支持定制化的高精度量化方案"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图 1",
+        "图 2",
+        "图 5"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 2,
+      "title": "核心技术一：硬件感知的瓦片量化方案",
+      "subsections": [
+        {
+          "subtitle": "NPU硬件约束分析",
+          "key_points": [
+            "Qualcomm Hexagon NPU的内存层级与HMX Tile布局（32x32矩阵）",
+            "传统列主序（Column-major）布局在NPU上的内存访问离散问题",
+            "向量指令（SIMD）与细粒度量化组大小的不匹配"
+          ]
+        },
+        {
+          "subtitle": "瓦片-组量化（Tile-Group Quantization）",
+          "key_points": [
+            "离线权重重排策略：将权重布局与硬件Tile内积操作对齐",
+            "Tile内的量化执行：以2x16块为单位进行组量化以保持统计特性",
+            "解决内存分散访问（Scatter/Gather）开销的方法"
+          ]
+        },
+        {
+          "subtitle": "宽向量访问优化",
+          "key_points": [
+            "超组（Super-group）聚合策略：合并8个量化组以适配128字节向量寄存器",
+            "AoS（结构数组）与SoA（数组结构）布局在NPU上的权衡"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图 4",
+        "图 6",
+        "图 7"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 3,
+      "title": "核心技术二：基于LUT的高效算子优化",
+      "subsections": [
+        {
+          "subtitle": "瓶颈分析：Softmax与FlashAttention",
+          "key_points": [
+            "随着Batch Size增加，Softmax成为Attention算子的主要瓶颈",
+            "HVX向量单元缺乏对指数函数（Exp）的专用硬件支持",
+            "多项式近似计算在VLIW架构下的指令级并行度限制"
+          ]
+        },
+        {
+          "subtitle": "基于LUT的快速Softmax实现",
+          "key_points": [
+            "利用`vgather`指令实现查找表（LUT）加速指数计算",
+            "解决LUT大小限制：利用Softmax数值特性（输入<=0）缩减表大小至64KB",
+            "FP16 FlashAttention的片上计算流程与精度保持策略"
+          ]
+        },
+        {
+          "subtitle": "以LUT为中心的去量化（Dequantization）",
+          "key_points": [
+            "利用`vlut16`指令单步完成INT4到FP16的转换",
+            "消除传统“掩码-移位-转换”序列的计算开销",
+            "通过LUT索引技巧实现Scaling Factor的高效广播"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图 8",
+        "图 9"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 4,
+      "title": "系统实现与评估",
+      "subsections": [
+        {
+          "subtitle": "实现细节与实验设置",
+          "key_points": [
+            "基于llama.cpp与Hexagon SDK的无QNN依赖实现",
+            "利用rpcmem共享内存减少CPU-NPU数据传输开销",
+            "测试平台：Snapdragon 8 Gen 2/3/Elite，模型：Qwen 2.5 & Llama 3.2"
+          ]
+        },
+        {
+          "subtitle": "整体性能表现",
+          "key_points": [
+            "精度-延迟权衡：测试时缩放实现了新的帕累托前沿",
+            "关键结论：小模型+测试时缩放 > 大模型+常规解码（精度相当但成本更低）",
+            "解码吞吐量随Batch Size的扩展性分析"
+          ]
+        },
+        {
+          "subtitle": "功耗分析与消融实验",
+          "key_points": [
+            "能效比分析：Batch Size增加并未显著增加整体功耗（利用闲置算力）",
+            "消融研究：硬件感知布局带来的GEMM加速（最高19倍）",
+            "LUT Softmax带来的Attention算子加速效果"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图 10",
+        "图 11",
+        "图 12",
+        "图 14",
+        "图 15"
+      ],
+      "key_formulas": false
+    }
+  ]
+}

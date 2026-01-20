@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 
-import google.generativeai as genai
+from google import genai
 
 from config import CONFIG
 from utils.logger import get_logger
@@ -37,39 +37,31 @@ from summarizer.assembler import assemble_document, get_output_path
 logger = get_logger("summarizer")
 
 
-def setup_gemini():
-    """初始化 Gemini API。"""
+def create_client() -> genai.Client:
+    """创建 Gemini API 客户端。"""
     api_key = os.environ.get(CONFIG["gemini"]["api_key_env"])
     if not api_key:
         logger.error(f"未设置环境变量: {CONFIG['gemini']['api_key_env']}")
         sys.exit(1)
 
-    genai.configure(api_key=api_key)
-    logger.info("Gemini API 初始化成功")
+    client = genai.Client(api_key=api_key)
+    logger.info("Gemini API 客户端创建成功")
+    return client
 
 
-def create_model(system_instruction: str = None) -> genai.GenerativeModel:
-    """创建 Gemini 模型实例。"""
-    return genai.GenerativeModel(
-        model_name=CONFIG["gemini"]["model"],
-        system_instruction=system_instruction,
-        generation_config={
-            "temperature": CONFIG["gemini"]["temperature"],
-        },
-    )
-
-
-def process_paper(paper_dir: Path) -> bool:
+def process_paper(client: genai.Client, paper_dir: Path) -> bool:
     """
     处理单篇论文。
 
     Args:
+        client: Gemini API 客户端
         paper_dir: 论文目录路径
 
     Returns:
         True 如果成功, False 否则
     """
     summarizer_config = CONFIG["summarizer"]
+    gemini_config = CONFIG["gemini"]
 
     # 1. 查找论文 Markdown 文件
     paper_md = find_paper_markdown(paper_dir, summarizer_config["output_suffix"])
@@ -91,7 +83,7 @@ def process_paper(paper_dir: Path) -> bool:
     )
 
     # 4. 上传文件到 Gemini
-    uploaded_files = upload_to_gemini(resources)
+    uploaded_files = upload_to_gemini(client, resources)
     if not uploaded_files:
         logger.error("文件上传失败")
         return False
@@ -110,38 +102,42 @@ def process_paper(paper_dir: Path) -> bool:
             prompts_dir / summarizer_config["expansion_prompt"]
         )
 
-        # 6. 创建模型
-        model = create_model(system_instruction)
-
-        # 7. 生成大纲
+        # 6. 生成大纲
         outline = generate_outline(
-            model=model,
+            client=client,
+            model_name=gemini_config["model"],
             uploaded_files=uploaded_files,
             outline_prompt=outline_prompt,
-            max_retries=CONFIG["gemini"]["max_retries"],
+            system_instruction=system_instruction,
+            temperature=gemini_config["temperature"],
+            max_retries=gemini_config["max_retries"],
         )
 
         if not outline:
             logger.error("大纲生成失败")
             return False
 
-        # 8. 保存大纲 JSON 文件
+        # 7. 保存大纲 JSON 文件
         outline_path = paper_dir / f"{paper_md.stem}_outline.json"
         save_outline(outline, outline_path)
 
-        # 9. 逐段扩写
+        # 8. 逐段扩写
         expanded_sections = expand_all_sections(
-            model=model,
+            client=client,
+            model_name=gemini_config["model"],
             uploaded_files=uploaded_files,
             outline=outline,
             expansion_prompt_template=expansion_prompt,
+            system_instruction=system_instruction,
+            temperature=gemini_config["temperature"],
             retry_delay=summarizer_config["retry_delay"],
+            max_retries=gemini_config["max_retries"],
         )
 
-        # 10. 读取原始论文内容（用于图片匹配）
+        # 9. 读取原始论文内容（用于图片匹配）
         source_content = read_markdown_content(paper_md)
 
-        # 11. 汇总合并（自动替换图片占位符）
+        # 10. 汇总合并（自动替换图片占位符）
         success = assemble_document(
             outline=outline,
             expanded_sections=expanded_sections,
@@ -156,15 +152,16 @@ def process_paper(paper_dir: Path) -> bool:
         return success
 
     finally:
-        # 10. 清理上传的文件
-        cleanup_uploaded_files(uploaded_files)
+        # 11. 清理上传的文件
+        cleanup_uploaded_files(client, uploaded_files)
 
 
-def scan_and_process(input_dir: Path, limit: int = None):
+def scan_and_process(client: genai.Client, input_dir: Path, limit: int = None):
     """
     扫描目录并处理所有论文。
 
     Args:
+        client: Gemini API 客户端
         input_dir: 输入目录 (20_Classification)
         limit: 最大处理数量 (None 表示不限制)
     """
@@ -188,7 +185,7 @@ def scan_and_process(input_dir: Path, limit: int = None):
                 break
 
             try:
-                if process_paper(paper_dir):
+                if process_paper(client, paper_dir):
                     success += 1
             except Exception as e:
                 logger.error(f"处理失败: {paper_dir.name}, 错误: {e}")
@@ -213,11 +210,14 @@ def main():
         default=None,
         help="输入目录 (默认使用配置中的 input_dir)",
     )
-
+    """
+    python 99_System/scripts/summarize.py \
+    --paper "D:\code\终端推理\20_Classification\测试时计算缩放\Scaling_LLM_Test-Time_Compute_on_Smartphones_with_Mobi
+    """
     args = parser.parse_args()
 
-    # 初始化 Gemini
-    setup_gemini()
+    # 创建 Gemini 客户端
+    client = create_client()
 
     if args.paper:
         # 处理单篇论文
@@ -225,14 +225,14 @@ def main():
         if not paper_dir.exists():
             logger.error(f"目录不存在: {args.paper}")
             sys.exit(1)
-        process_paper(paper_dir)
+        process_paper(client, paper_dir)
     else:
         # 扫描并处理所有论文
         input_dir = Path(args.input_dir or CONFIG["summarizer"]["input_dir"])
         if not input_dir.exists():
             logger.error(f"输入目录不存在: {input_dir}")
             sys.exit(1)
-        scan_and_process(input_dir, args.limit)
+        scan_and_process(client, input_dir, args.limit)
 
 
 if __name__ == "__main__":
