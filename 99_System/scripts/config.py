@@ -43,7 +43,8 @@ CONFIG = {
     # Gemini API 配置
     "gemini": {
         "api_key_env": "GOOGLE_API_KEY",  # 环境变量名
-        "model": "gemini-3-pro-preview",
+        # "model": "gemini-3-pro-preview",
+        "model": "gemini-3-flash-preview",
         "temperature": 1,
         "max_retries": 3,
     },

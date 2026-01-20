@@ -212,6 +212,7 @@ def main():
     )
     """
     python 99_System/scripts/summarize.py --paper "D:\code\终端推理\20_Classification\测试时计算缩放\Scaling_LLM_Test-Time_Compute_on_Smartphones_with_Mobi"
+    python summarize.py --paper "D:\code\终端推理\20_Classification\测试时计算缩放\Scaling_LLM_Test-Time_Compute_on_Smartphones_with_Mobi"
     """
     args = parser.parse_args()
 

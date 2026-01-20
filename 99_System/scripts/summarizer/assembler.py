@@ -19,10 +19,10 @@ logger = get_logger("summarizer")
 
 def find_image_in_source(source_content: str, figure_id: str) -> str | None:
     """
-    在原始论文 Markdown 中搜索 Figure X. 来定位对应图片。
+    在原始论文 Markdown 中搜索 Figure X 来定位对应图片。
 
     匹配逻辑：
-    1. 在原始论文中搜索 "Figure X." (X 为图片编号)
+    1. 在原始论文中搜索 "Figure X." 或 "Figure X:" (X 为图片编号)
     2. 检查该行的前面第二行是否包含 "![](" 标志
     3. 如果有，提取图片路径
 
@@ -35,11 +35,12 @@ def find_image_in_source(source_content: str, figure_id: str) -> str | None:
     """
     lines = source_content.split("\n")
 
-    # 搜索 "Figure X." 模式（支持 Figure 1. 或 **Figure 1.** 格式）
-    search_pattern = f"Figure {figure_id}."
+    # 使用正则匹配 "Figure X." 或 "Figure X:" 模式
+    # 支持 Figure 1. / Figure 1: / **Figure 1.** 等格式
+    search_pattern = re.compile(rf"Figure\s+{figure_id}[.:]")
 
     for i, line in enumerate(lines):
-        if search_pattern in line:
+        if search_pattern.search(line):
             # 检查前面第二行（i-2）
             if i >= 2:
                 prev_line = lines[i - 2]
