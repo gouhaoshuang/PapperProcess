@@ -2,4 +2,4 @@
 __pycache__/
 *.py[cod]
 *$py.class
-99_System\logs
+99_System/logs
