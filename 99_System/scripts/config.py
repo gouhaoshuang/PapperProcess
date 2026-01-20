@@ -36,15 +36,34 @@ CONFIG = {
     "librarian": {
         "staging_dir": r"D:\code\终端推理\10_References",
         "target_dir": r"D:\code\终端推理\20_Classification",
-        "min_filename_length": 5,        # 论文文件名最小长度
-        "abstract_max_chars": 2000,       # 读取前 N 个字符
-        "api_delay_seconds": 1.5,         # API 调用间隔 (防限流)
+        "min_filename_length": 5,  # 论文文件名最小长度
+        "abstract_max_chars": 2000,  # 读取前 N 个字符
+        "api_delay_seconds": 1.5,  # API 调用间隔 (防限流)
     },
     # Gemini API 配置
     "gemini": {
         "api_key_env": "GOOGLE_API_KEY",  # 环境变量名
-        "model": "gemini-3-pro-preview",
+        "model": "gemini-2.0-flash",
         "temperature": 0.3,
         "max_retries": 3,
+    },
+    # 论文总结系统配置 (Paper Summarizer)
+    "summarizer": {
+        # 提示词文件路径
+        "prompts_dir": r"D:\code\终端推理\99_System\prompts",
+        "outline_prompt": "01_outline_generation.md",
+        "expansion_prompt": "02_section_expansion.md",
+        "system_instruction": "03_system_instruction.md",
+        # 输入输出配置
+        "input_dir": r"D:\code\终端推理\20_Classification",  # 论文所在目录
+        "output_suffix": "_笔记",  # 生成文件后缀
+        # 文件匹配规则
+        "image_extensions": [".jpeg", ".jpg", ".png"],
+        # API 配置
+        "api_timeout": 120,
+        "retry_delay": 2,
+        # Context Caching 配置
+        "cache_token_threshold": 32000,  # 超过此值使用缓存
+        "cache_ttl_minutes": 60,
     },
 }

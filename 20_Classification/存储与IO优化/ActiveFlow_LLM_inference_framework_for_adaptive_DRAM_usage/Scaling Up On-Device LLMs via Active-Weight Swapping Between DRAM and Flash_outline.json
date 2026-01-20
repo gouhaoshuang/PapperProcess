@@ -1,0 +1,303 @@
+{
+  "paper_title": "ActiveFlow: LLM inference framework for adaptive DRAM usage",
+  "authors": "Fucheng Jia, Huiqiang Jiang, Yunxin Liu, Zewen Wu, Qianxi Zhang, Ju Ren, Ting Cao, Shiqi Jiang, Yuqing Yang, Deyu Zhang",
+  "year": null,
+  "one_liner": "ActiveFlow是一个LLM推理框架，通过活跃权重DRAM-Flash交换、跨层活跃权重预加载和稀疏感知自蒸馏等技术，实现了自适应DRAM使用，从而扩展了移动设备上可部署的LLM模型大小，并在性能和成本之间实现了帕累托最优。",
+  "sections": [
+    {
+      "id": 1,
+      "title": "Introduction",
+      "subsections": [
+        {
+          "subtitle": "Background and Motivation",
+          "key_points": [
+            "移动设备上部署大型语言模型（LLMs）面临DRAM容量限制",
+            "现有DRAM-Flash交换技术不适用于LLMs，因为LLMs的自回归解码阶段受限于内存访问",
+            "LLMs的上下文稀疏性（contextual sparsity）为自适应内存管理提供了新的机会"
+          ]
+        },
+        {
+          "subtitle": "Challenges of Active Weight Swapping",
+          "key_points": [
+            "如何准确识别活跃权重（active weights），因为上下文稀疏性是动态变化的",
+            "如何尽早预测活跃权重，以便计算和加载重叠，并实现高效的大I/O传输",
+            "现有技术无法实现LLMs的自适应内存使用，因为它们依赖于ReLU或需要额外的预测器"
+          ]
+        },
+        {
+          "subtitle": "ActiveFlow's Approach and Contributions",
+          "key_points": [
+            "ActiveFlow利用基于幅度的激活稀疏性（magnitude-based activation sparsity），适用于现代LLMs",
+            "ActiveFlow包含跨层活跃权重预加载（cross-layer active weight preloading），稀疏感知自蒸馏（sparsity-aware self-distillation）和DRAM-flash活跃权重交换流水线（DRAM-flash active weight swapping pipeline）",
+            "ActiveFlow实现了用户无感知的自适应DRAM使用，并在性能和成本之间实现了帕累托最优"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 1",
+        "图片 2",
+        "图片 3"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 2,
+      "title": "Motivation and Background",
+      "subsections": [
+        {
+          "subtitle": "Upper Bound Analysis of Contextual Sparsity in LLMs",
+          "key_points": [
+            "LLMs的上下文稀疏性意味着只有一小部分权重是活跃的，可以生成与完整模型相同的输出",
+            "实验表明，在解码过程中，大多数token只需要少于15%的权重",
+            "基于ReLU的稀疏性需要额外的预测器，而基于幅度的激活稀疏性（Top-K sparsity）具有优势"
+          ]
+        },
+        {
+          "subtitle": "Similarities in Cross-Layer Activations",
+          "key_points": [
+            "LLMs的attention和MLP块的输入激活具有高度的跨层相似性",
+            "残差连接（residual connection）是导致跨层相似性的主要原因",
+            "跨层输入相似性为跨层预加载提供了依据"
+          ]
+        },
+        {
+          "subtitle": "Contextual Hot Active Weights During Decoding",
+          "key_points": [
+            "上下文活跃权重在解码过程中表现出高时间局部性",
+            "存在热活跃权重（hot active weights），即在推理迭代中频繁选择的权重",
+            "上下文级别的热权重选择概率高于任务级别，表明可以通过上下文缓存管理策略来提高缓存命中率"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 4",
+        "图片 5",
+        "图片 6"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 3,
+      "title": "Cross-layer Active Weight Preloading",
+      "subsections": [
+        {
+          "subtitle": "Challenges and Existing Solutions",
+          "key_points": [
+            "实现自适应DRAM使用的两个关键挑战是：权重加载和计算是否可以重叠，以及I/O传输是否可以充分利用闪存带宽",
+            "现有的工作只部分缓解了问题，通过在同一块内聚集协同活跃权重通道，并重叠每个集群的加载和计算"
+          ]
+        },
+        {
+          "subtitle": "Cross-layer Active Weight Preloading Technique",
+          "key_points": [
+            "利用跨层激活具有显著相似性的观察，提出跨层活跃权重预加载",
+            "在计算当前层时，将预加载接下来N层（层组）的活跃权重到DRAM",
+            "对于预加载遗漏的活跃权重，在实际激活准备好后按需加载"
+          ]
+        },
+        {
+          "subtitle": "Data Layout for Cross-layer Preloading",
+          "key_points": [
+            "为了方便跨层预加载，重新排序闪存中的权重布局，打破张量和层边界",
+            "根据通道ID、层ID和算子类型的顺序，重新排序预加载层组内的权重通道",
+            "通过多层权重重新排序，增加了最小加载块大小，提高了加载效率"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 7",
+        "图片 8",
+        "图片 9"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 4,
+      "title": "Active Weight Swapping Pipeline",
+      "subsections": [
+        {
+          "subtitle": "Computing-Loading Overlapping Execution Pipeline",
+          "key_points": [
+            "设计了LLM计算-加载重叠执行流水线，包括计算（C）、Top-K（T）、按需加载（L）和预加载（PL）四个主要操作",
+            "整个模型驻留在具有跨层组布局的闪存中，当前活跃权重以及预加载和缓存的权重存储在DRAM中",
+            "计算和加载并发执行"
+          ]
+        },
+        {
+          "subtitle": "Elastic and Optimized LLM Execution",
+          "key_points": [
+            "目标是确定最佳系统参数，包括LLM稀疏性、跨层组的层数和缓存大小",
+            "在LLM稀疏性、跨层组的层数和缓存大小之间存在权衡，优化一个指标可能会恶化另一个指标",
+            "定义了一个优化问题，以最小化解码延迟，同时将内存成本作为硬约束"
+          ]
+        },
+        {
+          "subtitle": "Dynamic LLM Weight Caching",
+          "key_points": [
+            "基于热权重的观察，设计了动态LLM权重缓存",
+            "跟踪激活的频率统计，并在在线阶段驱逐最少使用的权重",
+            "为每个层的权重维护独立的计数器，确保所有权重之间的缓存大小平衡"
+          ]
+        },
+        {
+          "subtitle": "Self-Distillation for Top-K Sparse LLM",
+          "key_points": [
+            "Top-K激活稀疏性仍然引入了近似，特别是在高稀疏性下",
+            "提出Top-K稀疏感知自蒸馏，作为量化和微调流水线的扩展",
+            "使用密集（教师）和稀疏（学生）模型的输出，使用密集模型的软输出分布作为监督"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 10",
+        "图片 11",
+        "图片 12",
+        "图片 13"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 5,
+      "title": "Implementation",
+      "subsections": [
+        {
+          "subtitle": "Flash Loading Implementation",
+          "key_points": [
+            "修改了GGUF格式中权重张量的存储方式，以跨层组的方式组织每个算子的权重",
+            "利用IO uring，一种低开销的异步I/O机制，有效地读取权重",
+            "稀疏地将不同的通道加载到密集缓冲区中，这有助于优化内存缓冲区布局，以获得更好的紧凑性"
+          ]
+        },
+        {
+          "subtitle": "Swapping Pipeline and Caching Implementation",
+          "key_points": [
+            "创建了一个专用的权重加载线程，并通过sched_setaffinity函数将其绑定到CPU的小核心，以优化资源利用率",
+            "通过原子信号量实现权重加载线程和主计算线程之间的同步",
+            "实现了动态LLM权重缓存，其中为每个权重张量单独管理缓存"
+          ]
+        },
+        {
+          "subtitle": "Self-distillation Implementation",
+          "key_points": [
+            "在BitDistiller中开发了一个即插即用的稀疏模块，这是一个用于量化感知LLM蒸馏的开源框架",
+            "在每次LLM权重计算之前插入一个激活稀疏模块",
+            "在反向传播期间，为每个LLM权重合并一个梯度STE层"
+          ]
+        }
+      ],
+      "key_figures": [],
+      "key_formulas": false
+    },
+    {
+      "id": 6,
+      "title": "Evaluation",
+      "subsections": [
+        {
+          "subtitle": "Evaluation Setup",
+          "key_points": [
+            "在三种移动设备上评估ActiveFlow，涵盖从高端到低端的范围",
+            "使用流行的LLM，包括Llama和Mixtral系列，模型大小从7B到56B参数不等",
+            "将ActiveFlow与llama.cpp在解码速度和内存使用方面进行比较，并使用原始LLM、ProSparse和TEAL作为基线"
+          ]
+        },
+        {
+          "subtitle": "End-to-end Performance Results",
+          "key_points": [
+            "ActiveFlow在不同的设备上实现了与全权重内存设置相同的性能，同时降低了40%的内存成本",
+            "在降低75%的内存成本时，ActiveFlow实现了比设备2和设备3上的全权重内存设置分别快1.9倍和1.5倍的速度",
+            "ActiveFlow成功地在6GB内存下实现了Mixtral模型的解码"
+          ]
+        },
+        {
+          "subtitle": "Technique Breakdown and Ablation Studies",
+          "key_points": [
+            "消融实验验证了系统中每个技术的有效性，评估了它们对解码速度、困惑度和命中率的影响",
+            "跨层组流水线提高了闪存内存读取的效率",
+            "上下文缓存策略提高了缓存命中率"
+          ]
+        },
+        {
+          "subtitle": "Power and Energy Consumption",
+          "key_points": [
+            "ACTIVEFLOW降低了平均功耗，并进一步降低了每个token的能量，因为内存成本降低了",
+            "在1.3GB内存使用情况下，实现了高达53%的降低"
+          ]
+        }
+      ],
+      "key_figures": [
+        "图片 14",
+        "图片 15",
+        "图片 16",
+        "图片 17",
+        "图片 18",
+        "图片 19",
+        "图片 20"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 7,
+      "title": "Related Works",
+      "subsections": [
+        {
+          "subtitle": "Sparsity in LLMs",
+          "key_points": [
+            "许多研究工作都集中在LLMs的稀疏性上",
+            "一些方法依赖于基于ReLU的架构，或者缺乏在高稀疏性下恢复准确性的机制",
+            "InfiniGen和FlexGen主要关注KV缓存优化，而本文针对权重内存优化"
+          ]
+        },
+        {
+          "subtitle": "Efficient LLM Inference System",
+          "key_points": [
+            "一些系统级工作侧重于利用稀疏性来实现高效推理",
+            "这些工作主要针对基于ReLU的模型和FFN层，通常依赖于重型预测器（GB级内存）来跳过零激活",
+            "现代LLM（如LLaMA和Mixtral）采用非ReLU激活以提高准确性，限制了这些方法的适用性"
+          ]
+        },
+        {
+          "subtitle": "Our Distinction",
+          "key_points": [
+            "ActiveFlow通过针对现代非ReLU LLM中的所有权重（Attention和FFN）来消除ReLU依赖性和预测器开销",
+            "引入了跨层活跃权重预加载和稀疏感知自蒸馏",
+            "结合由激活统计驱动的基于LFU的缓存，始终实现更高的命中率，并确保严格的内存预算，从而实现可靠的边缘部署"
+          ]
+        },
+        {
+          "subtitle": "Static pruning techniques",
+          "key_points": [
+            "静态剪枝和量化是压缩大型语言模型的既定方法",
+            "这些静态方法需要离线处理模型权重，这限制了动态任务的灵活性",
+            "ActiveFlow不仅与这些静态技术兼容，而且还独特地支持动态处理以应对这一挑战"
+          ]
+        }
+      ],
+      "key_figures": [],
+      "key_formulas": false
+    },
+    {
+      "id": 8,
+      "title": "Conclusion",
+      "subsections": [
+        {
+          "subtitle": "Summary of ActiveFlow",
+          "key_points": [
+            "ActiveFlow是移动设备上的第一个LLM推理系统，支持自适应DRAM使用，以扩展可部署的模型大小",
+            "基于DRAM和闪存之间的活跃权重交换，集成了三种新技术：跨层活跃权重预加载、稀疏感知自蒸馏和活跃权重交换流水线",
+            "与其他效率优化方法相比，实现了推理性能-成本帕累托前沿"
+          ]
+        },
+        {
+          "subtitle": "Impact and Future Directions",
+          "key_points": [
+            "打破了LLM部署的DRAM限制，为在移动设备上部署服务器级LLM开辟了新的机会",
+            "未来的工作可以探索更高级的权重预测技术和更有效的缓存策略",
+            "可以进一步优化ActiveFlow，以支持更广泛的LLM架构和设备"
+          ]
+        }
+      ],
+      "key_figures": [],
+      "key_formulas": false
+    }
+  ]
+}
