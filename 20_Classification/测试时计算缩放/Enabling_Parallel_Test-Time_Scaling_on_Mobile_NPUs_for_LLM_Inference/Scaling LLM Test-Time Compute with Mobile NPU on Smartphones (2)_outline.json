@@ -1,0 +1,177 @@
+{
+  "paper_title": "Scaling LLM Test-Time Compute with Mobile NPU on Smartphones",
+  "authors": "Zixu Hao, Jianyu Wei, Tuowei Wang, Minxing Huang, Huiqiang Jiang, Shiqi Jiang, Ting Cao, Ju Ren",
+  "year": "2026",
+  "one_liner": "本文提出了一种利用移动端NPU闲置矩阵算力进行并行测试时计算缩放（Test-time Scaling）的系统，通过硬件感知的块量化和基于查表（LUT）的算子优化，使端侧小模型在推理任务中达到大模型的性能水平。",
+  "sections": [
+    {
+      "id": 1,
+      "title": "引言与背景",
+      "subsections": [
+        {
+          "subtitle": "移动端LLM部署的困境",
+          "key_points": [
+            "小模型性能不足与大模型资源消耗过大的矛盾",
+            "测试时计算缩放（Test-time Scaling）的概念及其在云端的应用",
+            "在资源受限的移动设备上增加推理计算量的反直觉性"
+          ]
+        },
+        {
+          "subtitle": "移动端NPU的机遇与挑战",
+          "key_points": [
+            "移动NPU（如高通Hexagon）的矩阵单元在LLM解码阶段（GEMV）利用率低下",
+            "利用闲置算力进行并行采样的可行性",
+            "挑战一：NPU缺乏对细粒度量化（Fine-grained Quantization）的硬件支持",
+            "挑战二：通用向量单元（Vector Unit）计算效率和带宽不足"
+          ]
+        }
+      ],
+      "key_figures": [
+        "Figure 1",
+        "Figure 5"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 2,
+      "title": "动机与硬件分析",
+      "subsections": [
+        {
+          "subtitle": "高通Hexagon NPU架构解析",
+          "key_points": [
+            "向量单元（HVX）与矩阵单元（HMX）的VLIW架构差异",
+            "HMX的Tile机制与特殊的内存布局",
+            "TCM（紧耦合内存）与DMA的数据传输机制"
+          ]
+        },
+        {
+          "subtitle": "解码阶段的算力浪费与精度陷阱",
+          "key_points": [
+            "LLM解码阶段GEMV操作导致矩阵单元利用率低（Tile填充率低）",
+            "现有QNN框架的粗粒度量化在推理任务中的精度崩塌问题",
+            "向量单元与矩阵单元在吞吐量与带宽上的巨大差距"
+          ]
+        }
+      ],
+      "key_figures": [
+        "Figure 2",
+        "Figure 3",
+        "Figure 4",
+        "Table 1",
+        "Table 2"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 3,
+      "title": "系统设计：硬件感知量化",
+      "subsections": [
+        {
+          "subtitle": "硬件感知的细粒度Tile量化方案",
+          "key_points": [
+            "传统列主序量化布局与NPU HMX Tile布局的不匹配问题",
+            "Tile-Group量化策略：基于硬件Tile布局重排权重",
+            "离线权重预处理流程（Permutation -> Quantization）"
+          ]
+        },
+        {
+          "subtitle": "量化组聚合与向量访问优化",
+          "key_points": [
+            "细粒度量化导致的向量寄存器利用率低的问题",
+            "聚合量化组（Coalescing Groups）以匹配HVX 128字节宽度的策略",
+            "减少运行时内存访问开销的设计"
+          ]
+        }
+      ],
+      "key_figures": [
+        "Figure 6",
+        "Figure 7"
+      ],
+      "key_formulas": false
+    },
+    {
+      "id": 4,
+      "title": "系统设计：基于LUT的计算优化",
+      "subsections": [
+        {
+          "subtitle": "基于向量Gather的快速Softmax",
+          "key_points": [
+            "FlashAttention在NPU上的瓶颈分析（指数计算）",
+            "利用LUT（查找表）替代高开销的指数计算（exp）",
+            "基于Safe Softmax性质的LUT表大小优化（仅存储非正数部分）"
+          ]
+        },
+        {
+          "subtitle": "LUT为核心的高效反量化",
+          "key_points": [
+            "利用vlut16指令加速INT4到FP16的转换",
+            "避免复杂的位操作（Mask/Unpack）",
+            "通过LUT实现Scale参数的高效广播"
+          ]
+        }
+      ],
+      "key_figures": [
+        "Figure 8",
+        "Figure 9",
+        "Algorithm 1"
+      ],
+      "key_formulas": true
+    },
+    {
+      "id": 5,
+      "title": "实现细节",
+      "subsections": [
+        {
+          "subtitle": "系统集成与内存管理",
+          "key_points": [
+            "基于llama.cpp的端到端系统实现",
+            "摆脱对闭源QNN框架依赖的算子库开发",
+            "利用rpcmem共享内存机制减少CPU-NPU数据拷贝",
+            "手动Cache维护以确保数据一致性"
+          ]
+        }
+      ],
+      "key_figures": [],
+      "key_formulas": false
+    },
+    {
+      "id": 6,
+      "title": "实验评估",
+      "subsections": [
+        {
+          "subtitle": "测试时缩放的性能-成本权衡",
+          "key_points": [
+            "Best-of-N和Beam Search在数学推理任务（MATH500, GSM8K）上的精度提升",
+            "小模型+TTS与大模型Baseline的帕累托前沿（Pareto Frontier）对比",
+            "证明小模型利用闲置算力可超越大模型表现"
+          ]
+        },
+        {
+          "subtitle": "端侧解码性能与能耗分析",
+          "key_points": [
+            "不同Batch Size下的解码吞吐量扩展性分析",
+            "与GPU实现及QNN基线的性能对比",
+            "功耗与能效比分析：增加并行度对整体能耗的影响有限"
+          ]
+        },
+        {
+          "subtitle": "消融实验与精度验证",
+          "key_points": [
+            "Tile量化布局对模型精度的影响评估",
+            "LUT-based Softmax与反量化算子的加速比分析",
+            "CPU与内存占用开销分析"
+          ]
+        }
+      ],
+      "key_figures": [
+        "Figure 10",
+        "Figure 11",
+        "Figure 12",
+        "Figure 13",
+        "Figure 14",
+        "Figure 15"
+      ],
+      "key_formulas": false
+    }
+  ]
+}

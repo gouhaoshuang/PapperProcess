@@ -138,11 +138,16 @@ def process_paper(paper_dir: Path) -> bool:
             retry_delay=summarizer_config["retry_delay"],
         )
 
-        # 10. 汇总合并
+        # 10. 读取原始论文内容（用于图片匹配）
+        source_content = read_markdown_content(paper_md)
+
+        # 11. 汇总合并（自动替换图片占位符）
         success = assemble_document(
             outline=outline,
             expanded_sections=expanded_sections,
             output_path=output_path,
+            paper_dir=paper_dir,
+            source_content=source_content,
         )
 
         if success:

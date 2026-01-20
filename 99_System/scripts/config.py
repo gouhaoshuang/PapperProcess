@@ -43,8 +43,8 @@ CONFIG = {
     # Gemini API 配置
     "gemini": {
         "api_key_env": "GOOGLE_API_KEY",  # 环境变量名
-        "model": "gemini-2.0-flash",
-        "temperature": 0.3,
+        "model": "gemini-3-pro-preview",
+        "temperature": 1,
         "max_retries": 3,
     },
     # 论文总结系统配置 (Paper Summarizer)

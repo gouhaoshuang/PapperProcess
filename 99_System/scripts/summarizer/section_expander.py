@@ -103,9 +103,10 @@ def expand_all_sections(
     outline: dict,
     expansion_prompt_template: str,
     retry_delay: float = 1.0,
+    max_retries: int = 3,
 ) -> list[dict]:
     """
-    扩写所有段落。
+    扩写所有段落（带报错重试机制）。
 
     Args:
         model: Gemini 模型实例
@@ -113,6 +114,7 @@ def expand_all_sections(
         outline: 大纲字典
         expansion_prompt_template: 扩写提示词模板
         retry_delay: 请求间隔 (秒)
+        max_retries: 单个段落最大重试次数
 
     Returns:
         包含 title 和 content 的段落列表
@@ -123,19 +125,38 @@ def expand_all_sections(
     results = []
 
     for i, section in enumerate(sections):
-        logger.info(f"处理段落 {i + 1}/{len(sections)}: {section.get('title', '')}")
+        section_title = section.get("title", f"段落 {i + 1}")
+        logger.info(f"处理段落 {i + 1}/{len(sections)}: {section_title}")
 
-        content = expand_section(
-            model=model,
-            uploaded_files=uploaded_files,
-            section=section,
-            expansion_prompt_template=expansion_prompt_template,
-        )
+        content = ""
+        # 报错重试机制
+        for attempt in range(max_retries + 1):
+            content = expand_section(
+                model=model,
+                uploaded_files=uploaded_files,
+                section=section,
+                expansion_prompt_template=expansion_prompt_template,
+            )
+
+            if content:
+                # 成功，跳出重试循环
+                break
+            elif attempt < max_retries:
+                # 失败，等待后重试
+                wait_time = retry_delay * (2**attempt)  # 2s, 4s, 8s
+                logger.warning(
+                    f"段落 '{section_title}' 扩写失败，{wait_time:.0f}秒后重试 ({attempt + 1}/{max_retries})..."
+                )
+                time.sleep(wait_time)
+            else:
+                logger.error(
+                    f"段落 '{section_title}' 扩写失败，已达最大重试次数 ({max_retries})"
+                )
 
         results.append(
             {
                 "id": section.get("id", i + 1),
-                "title": section.get("title", f"段落 {i + 1}"),
+                "title": section_title,
                 "content": content,
             }
         )
