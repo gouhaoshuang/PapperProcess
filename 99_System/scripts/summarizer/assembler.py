@@ -17,21 +17,22 @@ from utils.logger import get_logger
 logger = get_logger("summarizer")
 
 
-def find_image_in_source(source_content: str, figure_id: str) -> str | None:
+def find_image_in_source(source_content: str, figure_id: str) -> list[str]:
     """
     在原始论文 Markdown 中搜索 Figure X 来定位对应图片。
 
     匹配逻辑：
     1. 在原始论文中搜索 "Figure X." 或 "Figure X:" (X 为图片编号)
-    2. 向上检查前面最多 20 行，找到最近的包含 "![](" 的行
-    3. 如果找到，提取图片路径
+    2. 向上检查前面最多 20 行，收集所有包含 "![](" 的行
+    3. 从最近的图片开始，判断相邻图片行号差是否 ≤ 2，若是则视为同组图片
+    4. 返回所有需要替换的图片路径列表（按从上到下顺序）
 
     Args:
         source_content: 原始论文 Markdown 内容
         figure_id: 图片编号（如 "1", "2", "12"）
 
     Returns:
-        匹配的图片路径（相对路径），或 None
+        匹配的图片路径列表（相对路径），可能包含多张连续图片
     """
     lines = source_content.split("\n")
 
@@ -41,8 +42,10 @@ def find_image_in_source(source_content: str, figure_id: str) -> str | None:
 
     for i, line in enumerate(lines):
         if search_pattern.search(line):
-            # 向上检查前面最多 20 行，找到最近的图片行
+            # 步骤1: 向上检查前面最多 20 行，收集所有图片行
             search_range = min(i, 20)  # 最多向上搜索 20 行，但不超过当前行号
+            image_lines: list[tuple[int, str]] = []  # (行号, 图片路径)
+
             for offset in range(1, search_range + 1):
                 prev_line = lines[i - offset]
                 # 检查是否包含 Markdown 图片语法 "![]("
@@ -51,8 +54,32 @@ def find_image_in_source(source_content: str, figure_id: str) -> str | None:
                     match = re.search(r"!\[.*?\]\(([^)]+)\)", prev_line)
                     if match:
                         image_path = match.group(1)
-                        return image_path
-    return None
+                        image_lines.append((i - offset, image_path))
+
+            if not image_lines:
+                continue  # 未找到图片，继续搜索下一个匹配
+
+            # 步骤2: 按行号降序排列（最近的排前面）
+            image_lines.sort(key=lambda x: x[0], reverse=True)
+
+            # 步骤3: 从最近的图片开始，判断连续性（行号差 ≤ 2）
+            result = [image_lines[0]]  # 最近的图片必定需要
+
+            for j in range(1, len(image_lines)):
+                current_line_no = result[-1][0]  # 当前组中最后一个的行号
+                prev_line_no = image_lines[j][0]  # 待检查的图片行号
+
+                # 如果行号差 ≤ 2，视为连续图片
+                if (current_line_no - prev_line_no) <= 2:
+                    result.append(image_lines[j])
+                else:
+                    break  # 不再连续，停止
+
+            # 步骤4: 反转顺序（变为从上到下），并只返回路径
+            result.reverse()
+            return [item[1] for item in result]
+
+    return []
 
 
 def replace_image_placeholders(
@@ -89,13 +116,24 @@ def replace_image_placeholders(
     def replace_match(match: re.Match) -> str:
         figure_id = match.group(1)
 
-        # 在原始论文中搜索对应图片
-        image_path = find_image_in_source(source_content, figure_id)
+        # 在原始论文中搜索对应图片（可能返回多张连续图片）
+        image_paths = find_image_in_source(source_content, figure_id)
 
-        if image_path:
+        if image_paths:
             # 找到匹配图片，使用相对路径，前后空行确保正确渲染
-            logger.debug(f"Figure {figure_id} -> {image_path}")
-            return f"\n\n![Figure {figure_id}](./{image_path})\n\n"
+            if len(image_paths) == 1:
+                logger.debug(f"Figure {figure_id} -> {image_paths[0]}")
+                return f"\n\n![Figure {figure_id}](./{image_paths[0]})\n\n"
+            else:
+                # 多张连续图片
+                logger.debug(
+                    f"Figure {figure_id} -> {len(image_paths)} 张图片: {image_paths}"
+                )
+                image_md_list = [
+                    f"![Figure {figure_id}-{idx + 1}](./{path})"
+                    for idx, path in enumerate(image_paths)
+                ]
+                return "\n\n" + "\n\n".join(image_md_list) + "\n\n"
         else:
             # 未找到匹配图片，添加警告注释
             logger.warning(f"未找到 Figure {figure_id} 的匹配图片")
